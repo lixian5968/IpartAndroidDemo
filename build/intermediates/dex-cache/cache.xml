@@ -2,102 +2,11 @@
 <items version="2" >
 
     <item
-        jar="E:\Android_yjm_black\IpartDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jar="E:\Android_yjm_black\Android_coding\IpartDemo\greendaoIpartlib\build\libs\greendaoIpartlib.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\classes-02dbd866e734c349ec1c6c801ec4ba3278b99d66.jar" />
-    </item>
-    <item
-        jar="C:\Users\lixian\.gradle\caches\modules-2\files-2.1\com.github.bumptech.glide\glide\3.6.1\86b122e640af09b0723e1fa44083c354ba6d9089\glide-3.6.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="86b122e640af09b0723e1fa44083c354ba6d9089">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\glide-3.6.1-7bd2a372613ccc5f03fc2865320789d923588681.jar" />
-    </item>
-    <item
-        jar="E:\Android_yjm_black\IpartDemo\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1-a3bdfe8564134f451dc815ac2aba7565dccbabe1.jar" />
-    </item>
-    <item
-        jar="E:\Android_yjm_black\IpartDemo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\classes-848d13331173c894fe5b90a38b2c6ca3d074a1f0.jar" />
-    </item>
-    <item
-        jar="E:\Android_yjm_black\IpartDemo\app\build\intermediates\exploded-aar\de.hdodenhof\circleimageview\1.3.0\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\classes-9b9f7beb0f6a378f748bd97cbe0fc8a81cef6bf3.jar" />
-    </item>
-    <item
-        jar="E:\Android_yjm_black\IpartDemo\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\classes-62d335616df88a7cbec71763d2bac38f66c30208.jar" />
-    </item>
-    <item
-        jar="E:\eclipseIDE\adt-bundle-windows-x86_64-20140321\sdk_studio\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1-93233065e63536c4f814b205ea5e80073e73edbf.jar" />
-    </item>
-    <item
-        jar="E:\Android_yjm_black\IpartDemo\app\libs\commons-codec-1.3.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="fd32786786e2adb664d5ecc965da47629dca14ba">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\commons-codec-1.3-a93cb52a98e1bc72723a4c2c14a48254f1f2c518.jar" />
-    </item>
-    <item
-        jar="C:\Users\lixian\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\okio-1.6.0-5021d0e7cf2bc94332902e660c3f2e509fbb19bf.jar" />
-    </item>
-    <item
-        jar="E:\Android_yjm_black\IpartDemo\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\classes-952bf0b693857d9f2736d1cde51a0ea59ff6afc8.jar" />
-    </item>
-    <item
-        jar="C:\Users\lixian\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.2.4\a60a5e993c98c864010053cb901b7eab25306568\gson-2.2.4.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\gson-2.2.4-be401cfd70f3a898383f3510ed5927f805abd4de.jar" />
-    </item>
-    <item
-        jar="C:\Users\lixian\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.7.0\1477ec5caf8319ab4b51eb43553cd66aa86fdea5\okhttp-2.7.0.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="1477ec5caf8319ab4b51eb43553cd66aa86fdea5">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\okhttp-2.7.0-67db7879a9619521e8460d241fadda0808c54880.jar" />
-    </item>
-    <item
-        jar="C:\Users\lixian\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\7.0.1\d5d13ea991eab0252e3710e5df3d6a9d4b21d461\butterknife-7.0.1.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\butterknife-7.0.1-96a3d0a08ca9ac95eda7698d4a0bfb0ff06ceedd.jar" />
-    </item>
-    <item
-        jar="E:\Android_yjm_black\IpartDemo\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
-        jumboMode="false"
-        revision="23.0.2"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="E:\Android_yjm_black\IpartDemo\app\build\intermediates\pre-dexed\debug\classes-ff22223e423a3606bc2e7502359ea1214eaf8485.jar" />
+        sha1="1d41081a22286f4b0dbf6b722015fa4c87b09816">
+        <dex dex="E:\Android_yjm_black\Android_coding\IpartDemo\app\build\intermediates\pre-dexed\debug\greendaoIpartlib-e2396bb867558c3bfb884b2c3816512cbb88dd49.jar" />
     </item>
 
 </items>

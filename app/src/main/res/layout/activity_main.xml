@@ -1,103 +1,48 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <FrameLayout
-        android:id="@+id/home_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/main_bt_all" />
-
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/main_bt_all"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/black">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <LinearLayout
-            android:id="@+id/main_home_bt_all"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <CheckBox
-                android:id="@+id/main_home_bt_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/home_button_bg"
-                android:button="@null"
-                android:checked="false"
-                android:clickable="false" />
-
-            <TextView
-                android:id="@+id/main_home_bt_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="首页"
-                android:textSize="12dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/main_daren_bt_all"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <CheckBox
-                android:id="@+id/main_daren_bt_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/daren_button_bg"
-                android:button="@null"
-                android:checked="false"
-                android:clickable="false" />
-
-            <TextView
-                android:id="@+id/main_daren_bt_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="达人"
-                android:textSize="12dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/main_me_bt_all"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <CheckBox
-                android:id="@+id/main_me_bt_image"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/me_button_bg"
-                android:button="@null"
-                android:checked="false"
-                android:clickable="false" />
-
-            <TextView
-                android:id="@+id/main_me_bt_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text="我"
-                android:textSize="12dp" />
-
-        </LinearLayout>
+        <VideoView
+            android:id="@+id/login_VideoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp" />
 
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login" />
+        <Button
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register" />
+
+
+        <Button
+            android:id="@+id/NoLoginGoHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nologin_gohome" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

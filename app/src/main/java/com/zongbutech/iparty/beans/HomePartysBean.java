@@ -1,6 +1,7 @@
 package com.zongbutech.iparty.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -8,15 +9,8 @@ import java.util.List;
  */
 public class HomePartysBean implements Serializable {
     public int code;
-
     public List<HomePartyBean> data;
-
-    public String last_update_time;
-
-
-
-
-
+    public Date last_update_time;
 
 
 

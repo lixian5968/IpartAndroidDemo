@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':IpartHttp', ':greendaoIpartlib', ':okhttp3-persistent-cookiejar', ':lxview'

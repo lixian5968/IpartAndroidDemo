@@ -11,12 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.loveiparty.http.Utils.Urls;
 import com.zongbutech.iparty.R;
-import com.zongbutech.iparty.beans.HomePartyBean;
+import com.zongbutech.iparty.db.Party;
 import com.zongbutech.iparty.presenter.HomePartPresenter;
-import com.zongbutech.iparty.utils.http.Urls;
 import com.zongbutech.iparty.view.IView.IHomePartView;
-import com.zongbutech.iparty.view.activity.BaseActivity;
 import com.zongbutech.iparty.view.adapter.HomePartyAdapter;
 
 import java.util.ArrayList;
@@ -28,7 +27,7 @@ import butterknife.ButterKnife;
 /**
  * Created by lixian on 2016/3/9.
  */
-public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayout.OnRefreshListener,IHomePartView {
+public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener, IHomePartView {
 
 
     public static String TAG = HomePartFragment.class.getSimpleName();
@@ -41,17 +40,18 @@ public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayo
 
     private LinearLayoutManager mLayoutManager;
     private HomePartyAdapter mAdapter;
-    private List<HomePartyBean> mData;
+    private List<Party> mData;
     private HomePartPresenter mHomePartPresenter;
     //选择的项目
-    private int  type;
+    private int type;
     //加载的页面
     private int pageIndex = 0;
+
     @Override
-    public View getResourcesView(LayoutInflater inflater,ViewGroup container) {
+    public View getResourcesView(LayoutInflater inflater, ViewGroup container) {
         view = inflater.inflate(R.layout.fragment_home_part, container, false);
         ButterKnife.bind(this, view);
-        mHomePartPresenter = new HomePartPresenter(this);
+        mHomePartPresenter = new HomePartPresenter(ct, this);
         type = getArguments().getInt("select");
 
         mSwipeRefreshWidget.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
@@ -73,7 +73,7 @@ public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayo
 
     @Override
     public void afterOncreate(Bundle savedInstanceState) {
-        Log.e(TAG,"afterOncreate");
+        Log.e(TAG, "afterOncreate");
     }
 
     public static HomePartFragment newInstance() {
@@ -82,12 +82,11 @@ public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayo
     }
 
 
-
     private HomePartyAdapter.OnItemClickListener mOnItemClickListener = new HomePartyAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-            HomePartyBean PartyBean = mAdapter.getItem(position);
-            ((BaseActivity)getActivity()).mToast(PartyBean.title);
+//            HomePartyBean PartyBean = mAdapter.getItem(position);
+//            ((BaseActivity) getActivity()).mToast(PartyBean.title);
 //            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
 //            intent.putExtra("news", news);
 //
@@ -102,11 +101,13 @@ public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayo
 
     private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
         private int lastVisibleItem;
+
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
             lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
         }
+
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
@@ -114,19 +115,18 @@ public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayo
                     && lastVisibleItem + 1 == mAdapter.getItemCount()
                     && mAdapter.isShowFooter()) {
                 //加载更多
-                mHomePartPresenter.loadParts(type, pageIndex + Urls.PAZE_SIZE);
+                pageIndex += Urls.PAZE_SIZE;
+                mHomePartPresenter.loadParts(type, pageIndex);
             }
         }
     };
-
-
 
 
     //刷新
     @Override
     public void onRefresh() {
         pageIndex = 0;
-        if(mData != null) {
+        if (mData != null) {
             mData.clear();
         }
         mHomePartPresenter.loadParts(type, pageIndex);
@@ -140,25 +140,47 @@ public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayo
 
     // 添加 View
     @Override
-    public void addNews(List<HomePartyBean> newsList) {
+    public void addNews(List<Party> OldList, List<Party> newsList, boolean update) {
 
-        mAdapter.isShowFooter(true);
-        if(mData == null) {
-            mData = new ArrayList<HomePartyBean>();
+//        mAdapter.isShowFooter(true);
+        if (mData == null) {
+            mData = new ArrayList<Party>();
         }
         //如果没有更多数据了,则隐藏footer布局
-        if(newsList == null || newsList.size() == 0) {
-            mAdapter.isShowFooter(false);
-            mAdapter.notifyDataSetChanged();
-            return;
-        }
-        mData.addAll(newsList);
-        if(pageIndex == 0) {
-            mAdapter.setmDate(mData);
+        if (newsList != null && newsList.size() > 0) {
+            if (update && OldList!=null && OldList.size()>0) {
+                for (Party updateBean : OldList) {
+                    mData.remove(updateBean);
+                }
+            }
+            mData.addAll(newsList);
+            if (newsList.size() < Urls.PAZE_SIZE * 10) {
+//                mAdapter.isShowFooter(false);
+            }
+            if (pageIndex == 0) {
+                mAdapter.setmDate(mData);
+            } else {
+                mAdapter.notifyDataSetChanged();
+            }
         } else {
+//            mAdapter.isShowFooter(false);
             mAdapter.notifyDataSetChanged();
         }
-        pageIndex += Urls.PAZE_SIZE;
+
+
+
+//        if (newsList == null || newsList.size() == 0) {
+//            mAdapter.isShowFooter(false);
+//            mAdapter.notifyDataSetChanged();
+//            return;
+//        }
+//        mData.addAll(newsList);
+//        if (pageIndex == 0) {
+//            mAdapter.setmDate(mData);
+//        } else {
+//            mAdapter.notifyDataSetChanged();
+//        }
+
 
     }
 
@@ -170,12 +192,12 @@ public class HomePartFragment extends BaseFragment implements   SwipeRefreshLayo
 
     //显示错误信息
     @Override
-    public void showLoadFailMsg() {
-        if(pageIndex == 0) {
-            mAdapter.isShowFooter(false);
+    public void showLoadFailMsg(String msg, Exception e) {
+        if (pageIndex == 0) {
+//            mAdapter.isShowFooter(false);
             mAdapter.notifyDataSetChanged();
         }
-        View view =mRecyclerView.getRootView();
+        View view = mRecyclerView.getRootView();
         Snackbar.make(view, getString(R.string.load_fail), Snackbar.LENGTH_SHORT).show();
     }
 

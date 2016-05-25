@@ -6,8 +6,14 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import com.loveiparty.http.API.IpartApi;
+import com.lxview.MyDialog;
+import com.zongbutech.iparty.MyApplication;
+import com.zongbutech.iparty.R;
 
 import java.util.List;
 
@@ -15,7 +21,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public Context ct;
     public String Tag = "BaseActivity";
-
+    public IpartApi mIpartApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +37,82 @@ public class BaseActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        ct=this;
+        ct = this;
+        mIpartApi = ((MyApplication) ct.getApplicationContext()).getmIpartApi();
     }
 
     public void finish(View v) {
         finish();
     }
+
+    public void showLoadFailMsg(String msg, Exception e) {
+        if (e == null && msg == null) {
+            mToast("发生未知错误");
+        } else if (msg != null && e != null) {
+            mToast(msg + ",e：" + e.getMessage());
+            Log.e("showLoadFailMsg", msg + ",e：" + e.getMessage());
+        } else if (msg == null && e != null) {
+            mToast(",e：" + e.getMessage());
+            Log.e("showLoadFailMsg", e.getMessage());
+        } else if (msg != null && e == null) {
+            mToast(msg);
+            Log.e("showLoadFailMsg", msg);
+        }
+        CancelWaitDialog();
+    }
+
     public void mToast(String s) {
         try {
-            Toast.makeText(BaseActivity.this, s, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ct, s, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+    // 等待对话框
+    public MyDialog MyWaitDialog;
+
+    public void showMyWaitDialog(final Context ct) {
+        if (ct == null) {
+            return;
+        }
+        View view = View.inflate(ct, R.layout.wait_dialog, null);
+        if (MyWaitDialog == null) {
+            MyWaitDialog = new MyDialog(ct, 0, 0, view, R.style.dialog);
+        }
+        MyWaitDialog.setCancelable(false);
+        MyWaitDialog.show();
+    }
+
+    //关闭等待对话框
+    public void CancelWaitDialog() {
+        if (MyWaitDialog != null && MyWaitDialog.isShowing()) {
+            MyWaitDialog.dismiss();
+        }
+    }
+
+
+    public void showActivityProgress() {
+        showMyWaitDialog(ct);
+    }
+
+    public void hideActivityProgress() {
+        CancelWaitDialog();
+    }
+
+
+    public void showProgress() {
+
+    }
+
+    public void hideProgress() {
+
+    }
+
     public void mToast(Exception e) {
         try {
-            Toast.makeText(BaseActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            mToast(e.getMessage());
         } catch (Exception mye) {
             mye.printStackTrace();
         }

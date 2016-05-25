@@ -2,7 +2,9 @@
     <string name="app_name">iParty</string>
 
 
-    <!--LoginActivity-->
+    <!--MainActivity-->
+    <string name="login">登陆</string>
+    <string name="register">注册</string>
     <string name="nologin_gohome">进去逛逛</string>
     <string name="title_activity_main">MainActivity</string>
 
@@ -12,6 +14,7 @@
 
     <string name="load_fail">加载数据失败!</string>
     <string name="title_activity_splash_select">SplashSelectActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 
 
 </resources>

@@ -10,12 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.loveiparty.http.Utils.ImageLoaderUtils;
 import com.zongbutech.iparty.R;
-import com.zongbutech.iparty.beans.HomePartyBean;
-import com.zongbutech.iparty.beans.JoinedUserBean;
-import com.zongbutech.iparty.utils.http.ImageLoaderUtils;
+import com.zongbutech.iparty.db.Party;
 
 import java.util.List;
+
 
 /**
  * Description :
@@ -28,7 +28,7 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_FOOTER = 1;
 
-    private List<HomePartyBean> mData;
+    private List<Party> mData;
     private boolean mShowFooter = true;
     private Context mContext;
 
@@ -38,7 +38,7 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.mContext = context;
     }
 
-    public void setmDate(List<HomePartyBean> data) {
+    public void setmDate(List<Party> data) {
         this.mData = data;
         this.notifyDataSetChanged();
     }
@@ -73,42 +73,47 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ItemViewHolder) {
 
-            HomePartyBean Party = mData.get(position);
-            if (Party == null) {
+            Party mParty = mData.get(position);
+            if (mParty == null) {
                 return;
             }
-            ((ItemViewHolder) holder).homepart_item_money.setText(Party.price_man / 100 + "");
-            ((ItemViewHolder) holder).homepart_item_name.setText(Party.title);
-            ((ItemViewHolder) holder).homepart_item_loveUserCount.setText(Party.favorite_num);
-            ((ItemViewHolder) holder).homepart_item_time.setText(Party.start_time + "," + Party.end_time);
-
-            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_all, Party.pic_base_url + Party.head_photo);
-            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_user, Party.pic_base_url + Party.publisher_avatar);
-
-            if (Party.joined_users == null || Party.joined_users.size() == 0) {
-                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.GONE);
+            ((ItemViewHolder) holder).homepart_item_money.setText(mParty.getPrice_man() / 100 + "");
+            ((ItemViewHolder) holder).homepart_item_name.setText(mParty.getTitle());
+            ((ItemViewHolder) holder).homepart_item_loveUserCount.setText(mParty.getFavorite_num()+"");
+            ((ItemViewHolder) holder).homepart_item_time.setText(mParty.getStart_time() + "," + mParty.getEnd_time());
+            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_all, mParty.getPic_base_url() + mParty.getHeadphoto());
+            String url = "";
+            if (mParty.getPublisher_avatar().startsWith("http")) {
+                url = mParty.getPublisher_avatar();
             } else {
-                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.VISIBLE);
-                ((ItemViewHolder) holder).home_fragment_joined_users.removeAllViews();
-                for (JoinedUserBean juser : Party.joined_users) {
-                    View JUser = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_joinuser, null);
-                    ImageView  jion_user_icon = (ImageView) JUser.findViewById(R.id.jion_user_icon);
-                    TextView  jion_user_name = (TextView) JUser.findViewById(R.id.jion_user_name);
-                    ImageView  jion_user_sex = (ImageView) JUser.findViewById(R.id.jion_user_sex);
-
-                    ImageLoaderUtils.display(mContext, jion_user_icon, juser.avatar);
-                    jion_user_name.setText(juser.nickname);
-                    if(juser.sex == 1){
-
-                    }else{
-
-                    }
-                    ((ItemViewHolder) holder).home_fragment_joined_users.addView(JUser);
-
-                }
-
-
+                url = mParty.getPic_base_url() + mParty.getPublisher_avatar();
             }
+            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_user, url);
+
+//            if (mParty.joined_users == null || Party.joined_users.size() == 0) {
+//                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.GONE);
+//            } else {
+//                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.VISIBLE);
+//                ((ItemViewHolder) holder).home_fragment_joined_users.removeAllViews();
+//                for (JoinedUserBean juser : Party.joined_users) {
+//                    View JUser = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_joinuser, null);
+//                    ImageView jion_user_icon = (ImageView) JUser.findViewById(R.id.jion_user_icon);
+//                    TextView jion_user_name = (TextView) JUser.findViewById(R.id.jion_user_name);
+//                    ImageView jion_user_sex = (ImageView) JUser.findViewById(R.id.jion_user_sex);
+//
+//                    ImageLoaderUtils.display(mContext, jion_user_icon, juser.avatar);
+//                    jion_user_name.setText(juser.nickname);
+//                    if (juser.sex == 1) {
+//
+//                    } else {
+//
+//                    }
+//                    ((ItemViewHolder) holder).home_fragment_joined_users.addView(JUser);
+//
+//                }
+//
+//
+//            }
 
 
         }
@@ -123,7 +128,7 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         return mData.size() + begin;
     }
 
-    public HomePartyBean getItem(int position) {
+    public Party getItem(int position) {
         return mData == null ? null : mData.get(position);
     }
 
