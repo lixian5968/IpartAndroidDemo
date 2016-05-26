@@ -32,7 +32,9 @@ public class PartDbModel extends BaseDbModel {
         try {
             QueryBuilder<Party> builder = mPartyDao.queryBuilder();
             getAll(builder);
-            builder.where(PartyDao.Properties.Types.like("%" + type + "%"));
+            if(type!=0){
+                builder.where(PartyDao.Properties.Types.like("%" + type + "%"));
+            }
             builder.orderDesc(PartyDao.Properties.Update_time);
             builder.limit(10);
             builder.offset(page * 10);
@@ -50,7 +52,35 @@ public class PartDbModel extends BaseDbModel {
     }
 
     public void saveDbParty(HomePartyBean mHomePartyBean) {
-        Party mParty = new Party();
+        Party mParty = getPartyById((long) mHomePartyBean.party_id);
+        if(mParty==null){
+            mParty = new Party();
+            mParty.setId((long) mHomePartyBean.party_id);
+            insertParty(mHomePartyBean, mParty);
+            mPartyDao.insert(mParty);
+        }else{
+            insertParty(mHomePartyBean, mParty);
+            mPartyDao.update(mParty);
+        }
+        mPartyDao.insertOrReplace(mParty);
+
+        for (PhotoBean mPhotoBean : mHomePartyBean.photos) {
+            UrlString mUrlString = getUrlStringByUrl(mPhotoBean.url);
+            if(mUrlString==null){
+                mUrlString = new UrlString();
+                mUrlString.setUrl(mPhotoBean.url);
+                mUrlString.setUrlType("PartyPhoto");
+                mUrlStringDao.insert(mUrlString);
+            }else{
+                mUrlString.setUrl(mPhotoBean.url);
+                mUrlString.setUrlType("PartyPhoto");
+                mUrlStringDao.update(mUrlString);
+            }
+        }
+    }
+
+    //DbParty 插入数据
+    private void insertParty(HomePartyBean mHomePartyBean, Party mParty) {
         mParty.setAddress(mHomePartyBean.address_text);
         mParty.setAddress_thumbnail(mHomePartyBean.address_thumbnail);
         mParty.setAddressurl(mHomePartyBean.address_url);
@@ -64,7 +94,6 @@ public class PartDbModel extends BaseDbModel {
         mParty.setMaximum_num(mHomePartyBean.maximum_num);
         mParty.setOld_price_man(mHomePartyBean.old_price_man);
         mParty.setOld_price_woman(mHomePartyBean.old_price_woman);
-        mParty.setId((long) mHomePartyBean.party_id);
         mParty.setPic_base_url(mHomePartyBean.pic_base_url);
         mParty.setPrice_man(mHomePartyBean.price_man);
         mParty.setPrice_woman(mHomePartyBean.price_woman);
@@ -80,25 +109,18 @@ public class PartDbModel extends BaseDbModel {
         mParty.setTitle(mHomePartyBean.title);
         mParty.setTypes(mHomePartyBean.types);
         mParty.setWeek_activity(mHomePartyBean.week_activity);
-        mPartyDao.insertOrReplace(mParty);
+    }
 
-
-        for (PhotoBean mPhotoBean : mHomePartyBean.photos) {
-            UrlString mUrlString = getUrlStringByUrl(mPhotoBean.url);
-            if(mUrlString==null){
-                mUrlString = new UrlString();
-                mUrlString.setUrl(mPhotoBean.url);
-                mUrlString.setUrlType("PartyPhoto");
-                mUrlStringDao.insert(mUrlString);
-            }else{
-                mUrlString.setUrl(mPhotoBean.url);
-                mUrlString.setUrlType("PartyPhoto");
-                mUrlStringDao.update(mUrlString);
-            }
-
+    private Party getPartyById(Long id) {
+        try {
+            QueryBuilder<Party> builder = mPartyDao.queryBuilder();
+            builder.where(PartyDao.Properties.Id.eq(id));
+            List<Party> Beans = builder.list();
+            return Beans.get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-
-
     }
 
     private UrlString getUrlStringByUrl(String url) {

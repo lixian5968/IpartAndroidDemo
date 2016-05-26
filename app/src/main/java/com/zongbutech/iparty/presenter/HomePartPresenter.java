@@ -1,6 +1,7 @@
 package com.zongbutech.iparty.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.loveiparty.http.Utils.JsonUtils;
 import com.loveiparty.http.Utils.OkHttpUtils;
@@ -10,6 +11,7 @@ import com.zongbutech.iparty.beans.HomePartysBean;
 import com.zongbutech.iparty.beans.PresenterBean;
 import com.zongbutech.iparty.db.Party;
 import com.zongbutech.iparty.model.DbModel.PartDbModel;
+import com.zongbutech.iparty.utils.db.Time;
 import com.zongbutech.iparty.view.IView.IHomePartView;
 
 import java.util.List;
@@ -45,6 +47,7 @@ public class HomePartPresenter {
             mIHomePartView.showProgress();
         }
 
+        //如果没有通知不能干掉帖子  帖子的详细信息倒是可以缓存一下
 
         Observable.create(new Observable.OnSubscribe<PresenterBean>() {
             @Override
@@ -76,6 +79,7 @@ public class HomePartPresenter {
                     @Override
                     public PresenterBean call(PresenterBean presenterBean) {
                         String result = OkHttpUtils.get(ct, url);
+                        Log.e("lxresult",result);
                         HomePartysBean bean = JsonUtils.deserialize(result, HomePartysBean.class);
                         if (bean.code < 0) {
                             presenterBean.error = result;
@@ -122,6 +126,14 @@ public class HomePartPresenter {
 
 
     private boolean CheckDbParty(List<HomePartyBean> list, List<Party> dblist) {
+
+        for(int i=0;i<list.size();i++){
+            Log.e("lxHttp",list.get(i).title+",update:"+ Time.DateToString(list.get(i).last_update_time)+",create:"+Time.DateToString(list.get(i).start_time));
+        }
+        for(int i=0;i<dblist.size();i++){
+            Log.e("lxDb",dblist.get(i).getTitle()+",update:"+Time.DateToString(dblist.get(i).getUpdate_time())+",create:"+Time.DateToString(dblist.get(i).getStart_time()));
+        }
+
         if (dblist != null
                 && list != null
                 && dblist.size() == list.size()

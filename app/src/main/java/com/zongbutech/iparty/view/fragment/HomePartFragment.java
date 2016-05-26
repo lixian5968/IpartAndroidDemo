@@ -142,7 +142,7 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
     @Override
     public void addNews(List<Party> OldList, List<Party> newsList, boolean update) {
 
-//        mAdapter.isShowFooter(true);
+        mAdapter.isShowFooter(true);
         if (mData == null) {
             mData = new ArrayList<Party>();
         }
@@ -155,7 +155,7 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
             }
             mData.addAll(newsList);
             if (newsList.size() < Urls.PAZE_SIZE * 10) {
-//                mAdapter.isShowFooter(false);
+                mAdapter.isShowFooter(false);
             }
             if (pageIndex == 0) {
                 mAdapter.setmDate(mData);
@@ -163,7 +163,7 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
                 mAdapter.notifyDataSetChanged();
             }
         } else {
-//            mAdapter.isShowFooter(false);
+            mAdapter.isShowFooter(false);
             mAdapter.notifyDataSetChanged();
         }
 
