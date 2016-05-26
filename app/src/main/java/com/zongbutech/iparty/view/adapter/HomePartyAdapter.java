@@ -10,9 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.loveiparty.http.Bean.JoinedUserBean;
 import com.loveiparty.http.Utils.ImageLoaderUtils;
+import com.loveiparty.http.db.Party;
 import com.zongbutech.iparty.R;
-import com.zongbutech.iparty.db.Party;
 
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_ITEM) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_item, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_item, parent, false);
             ItemViewHolder vh = new ItemViewHolder(v);
             return vh;
         } else {
@@ -81,7 +82,7 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ((ItemViewHolder) holder).homepart_item_name.setText(mParty.getTitle());
             ((ItemViewHolder) holder).homepart_item_loveUserCount.setText(mParty.getFavorite_num()+"");
             ((ItemViewHolder) holder).homepart_item_time.setText(mParty.getStart_time() + "," + mParty.getEnd_time());
-            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_all, mParty.getPic_base_url() + mParty.getHeadphoto());
+            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_all, mParty.getPic_base_url() + mParty.getHead_photo());
             String url = "";
             if (mParty.getPublisher_avatar().startsWith("http")) {
                 url = mParty.getPublisher_avatar();
@@ -90,32 +91,26 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
             ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_user, url);
 
-//            if (mParty.joined_users == null || Party.joined_users.size() == 0) {
-//                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.GONE);
-//            } else {
-//                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.VISIBLE);
-//                ((ItemViewHolder) holder).home_fragment_joined_users.removeAllViews();
-//                for (JoinedUserBean juser : Party.joined_users) {
-//                    View JUser = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_joinuser, null);
-//                    ImageView jion_user_icon = (ImageView) JUser.findViewById(R.id.jion_user_icon);
-//                    TextView jion_user_name = (TextView) JUser.findViewById(R.id.jion_user_name);
-//                    ImageView jion_user_sex = (ImageView) JUser.findViewById(R.id.jion_user_sex);
-//
-//                    ImageLoaderUtils.display(mContext, jion_user_icon, juser.avatar);
-//                    jion_user_name.setText(juser.nickname);
-//                    if (juser.sex == 1) {
-//
-//                    } else {
-//
-//                    }
-//                    ((ItemViewHolder) holder).home_fragment_joined_users.addView(JUser);
-//
-//                }
-//
-//
-//            }
+            if (mParty.joined_users == null || mParty.joined_users.size() == 0) {
+                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.GONE);
+            } else {
+                ((ItemViewHolder) holder).home_fragment_joined_users_all.setVisibility(View.VISIBLE);
+                ((ItemViewHolder) holder).home_fragment_joined_users.removeAllViews();
+                for (JoinedUserBean juser : mParty.joined_users) {
+                    View JUser = LayoutInflater.from(mContext).inflate(R.layout.fragment_item_joinuser, null);
+                    ImageView jion_user_icon = (ImageView) JUser.findViewById(R.id.jion_user_icon);
+                    TextView jion_user_name = (TextView) JUser.findViewById(R.id.jion_user_name);
+                    ImageView jion_user_sex = (ImageView) JUser.findViewById(R.id.jion_user_sex);
+                    ImageLoaderUtils.display(mContext, jion_user_icon, juser.avatar);
+                    jion_user_name.setText(juser.nickname);
+                    if (juser.sex == 1) {
 
+                    } else {
 
+                    }
+                    ((ItemViewHolder) holder).home_fragment_joined_users.addView(JUser);
+                }
+            }
         }
     }
 

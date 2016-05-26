@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
-import com.loveiparty.http.HttpBean.HttpUserInfo;
+import com.loveiparty.http.Bean.HttpUserInfo;
 import com.loveiparty.http.Utils.JsonUtils;
 import com.zongbutech.iparty.model.DbModel.UserDbModel;
 import com.zongbutech.iparty.utils.db.SharePrefUtil;

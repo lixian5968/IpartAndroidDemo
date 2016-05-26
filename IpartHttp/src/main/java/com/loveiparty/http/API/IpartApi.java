@@ -16,19 +16,6 @@ import rx.Observable;
  */
 public interface IpartApi {
 
-    //下面三种穿的参数样式
-//    telephone=13282008515&password=900929
-//    @FormUrlEncoded
-//    @POST("/open/api/v1/session")
-//    Observable<JsonObject> IpartLoginObservable(@Field("telephone") String username, @Field("password") String password);
-//    @POST("/open/api/v1/session")
-//    Observable<JsonObject> IpartLoginObservable(@Part("telephone") String username, @Part("password") String password);
-//    @POST("/open/api/v1/session")
-//    Observable<JsonObject> IpartLoginObservable(@Query("telephone") String username, @Query("password") String password);
-
-
-    // 传递的样式{"telephone":"13282008515","password":"900929"}
-
     //用户登录
     @POST("/open/api/v1/session")
     Observable<JsonObject> IpartLogin(@Body JsonObject mJsonObject);
@@ -43,7 +30,7 @@ public interface IpartApi {
 
     //获取用户优惠卷
     @GET("/open/api/v1/coupons")
-    Observable<JsonObject> IpartGetHongBao( @Query("page") int page, @Query("roll") int roll, @Query("only_valid") int only_valid);
+    Observable<JsonObject> IpartGetHongBao(@Query("page") int page, @Query("roll") int roll, @Query("only_valid") int only_valid);
 
 
     //修改密码 获取用户短信验证码
@@ -52,15 +39,21 @@ public interface IpartApi {
 
     //修改密码 获取用户短信验证码
     @PUT("/open/api/v1/users/{telephone}/reset_password")
-    Observable<JsonObject> PutPhoneCodes(@Path("telephone") String telephone,@Body JsonObject mJsonObject);
-
+    Observable<JsonObject> PutPhoneCodes(@Path("telephone") String telephone, @Body JsonObject mJsonObject);
 
 
     //获取part的详细信息
     @GET("/open/api/v1/partylist/{partId}")
     Observable<JsonObject> getPart(@Path("partId") String partId);
-//    @GET("/open/api/v1/partylist/{partId}")
-//    Observable<JsonObject> getPart(@Path("partId") String partId);
-//
-//    http://www.loveiparty.com/open/api/v1/messages/647/1/10
+
+
+    //获取part的列表
+    @GET("/open/api/v1/partylist/{page}/{roll}")
+    Observable<JsonObject> getParts(@Path("page") int page, @Path("roll") int roll, @Query("types") int types, @Query("joined_users") int joined_users);
+
+
+    //获取Talent的列表
+    @GET("/open/api/v1/users/talents/{page}/{roll}")
+    Observable<JsonObject> getTalents(@Path("page") int page, @Path("roll") int roll, @Query("identify") int identify);
+
 }

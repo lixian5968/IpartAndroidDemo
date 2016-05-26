@@ -8,11 +8,11 @@ import de.greenrobot.daogenerator.Schema;
 
 public class MyClass {
     public static final int VERSION = 1;
-    public static final String GREEN_DAO_CODE_PATH = "../IpartDemo/app/src/main/java";
+    public static final String GREEN_DAO_CODE_PATH = "../IpartDemo/IpartHttp/src/main/java";
 
     public static void main(String[] args) throws Exception {
 
-        Schema schema = new Schema(VERSION, "com.zongbutech.iparty.db");
+        Schema schema = new Schema(VERSION, "com.loveiparty.http.db");
 
         Entity UserAsset = schema.addEntity("UserAsset");
         UserAsset.addIdProperty();
@@ -137,51 +137,60 @@ public class MyClass {
 
 
         Entity Party = schema.addEntity("Party");
+        Party.setSuperclass("com.loveiparty.http.Bean.BasePartyBean");
         Party.addIdProperty();
         Party.addStringProperty("objectId");
-        Party.addStringProperty("title");
-        Party.addStringProperty("only");
-        Party.addIntProperty("old_price_man");
-        Party.addIntProperty("old_price_woman");
-        Party.addIntProperty("price_man");
-        Party.addIntProperty("price_woman");
+        Party.addStringProperty("address_text");
+        Party.addStringProperty("address_url");
+        Party.addStringProperty("address_thumbnail");
         Party.addDateProperty("end_time");
         Party.addIntProperty("favorite_num");
-        Party.addIntProperty("leastnum");
-        Party.addIntProperty("sold");
-        Party.addStringProperty("address");
-        Party.addStringProperty("addressurl");
-        Party.addStringProperty("address_thumbnail");
-        Party.addStringProperty("phone");
-        Party.addStringProperty("description");
-        Party.addStringProperty("content");
-        Party.addStringProperty("note");
-        Party.addStringProperty("pic_base_url");
-        Party.addDateProperty("created_time");
-        Party.addStringProperty("photoids");
-        Party.addStringProperty("headphoto");
-        Party.addStringProperty("wechatgroup");
-        Party.addStringProperty("customphoto");
-        Party.addIntProperty("is_delete");
-        Party.addIntProperty("type_ids");
+        Party.addStringProperty("head_photo");
+        Party.addIntProperty("in_progress");
+        Party.addDateProperty("last_update_time");
+        Party.addIntProperty("least_num");
         Party.addIntProperty("limited");
         Party.addIntProperty("maximum_num");
-        Party.addDateProperty("start_time");
-        Party.addStringProperty("deadline_time");
-        Party.addIntProperty("time_type");
-        Party.addStringProperty("time_text");
-        Party.addStringProperty("user_id");
-        Party.addBooleanProperty("is_audited");
-        Party.addBooleanProperty("is_available");
-        Party.addDateProperty("update_time");
+        Party.addIntProperty("old_price_man");
+        Party.addIntProperty("old_price_woman");
+        Party.addIntProperty("party_id");
+        Party.addStringProperty("pic_base_url");
+        Party.addIntProperty("price_man");
+        Party.addIntProperty("price_woman");
         Party.addStringProperty("publisher_avatar");
         Party.addIntProperty("publisher_id");
         Party.addStringProperty("publisher_name");
         Party.addIntProperty("publisher_star");
         Party.addStringProperty("recommend");
         Party.addIntProperty("sold_num");
+        Party.addDateProperty("start_time");
+        Party.addStringProperty("time_text");
+        Party.addIntProperty("time_type");
+        Party.addStringProperty("title");
         Party.addStringProperty("types");
         Party.addIntProperty("week_activity");
+
+        Party.addStringProperty("only");
+        Party.addIntProperty("leastnum");
+        Party.addIntProperty("sold");
+        Party.addStringProperty("phone");
+        Party.addStringProperty("description");
+        Party.addStringProperty("content");
+        Party.addStringProperty("note");
+        Party.addDateProperty("created_time");
+        Party.addStringProperty("photoids");
+        Party.addStringProperty("wechatgroup");
+        Party.addStringProperty("customphoto");
+        Party.addIntProperty("is_delete");
+        Party.addIntProperty("type_ids");
+        Party.addStringProperty("deadline_time");
+        Party.addStringProperty("user_id");
+        Party.addBooleanProperty("is_audited");
+        Party.addBooleanProperty("is_available");
+        Party.addDateProperty("update_time");
+
+
+
 
 
 

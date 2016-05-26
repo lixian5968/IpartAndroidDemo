@@ -11,9 +11,9 @@ import com.loveiparty.http.API.IpartApi;
 import com.loveiparty.http.UserCookie.okhttp.CookieInterceptor;
 import com.loveiparty.http.UserCookie.okhttp.HttpLoggingInterceptor;
 import com.loveiparty.http.UserCookie.storage.UserStorage;
+import com.loveiparty.http.db.DaoMaster;
+import com.loveiparty.http.db.DaoSession;
 import com.loveiparty.http.service.RetrofitService;
-import com.zongbutech.iparty.db.DaoMaster;
-import com.zongbutech.iparty.db.DaoSession;
 
 import java.util.concurrent.TimeUnit;
 

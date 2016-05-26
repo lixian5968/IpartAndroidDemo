@@ -7,7 +7,7 @@ public class Constants {
 
     public static String Cookie = "";
 
+    public static final int PAZE_SIZE = 1;
 
-
-
+    public static final int PAZE_Roll = 10;
 }

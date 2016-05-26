@@ -2,9 +2,9 @@ package com.zongbutech.iparty.model.DbModel;
 
 import android.content.Context;
 
-import com.loveiparty.http.HttpBean.HttpUserInfo;
-import com.zongbutech.iparty.db.User;
-import com.zongbutech.iparty.db.UserDao;
+import com.loveiparty.http.Bean.HttpUserInfo;
+import com.loveiparty.http.db.User;
+import com.loveiparty.http.db.UserDao;
 
 /**
  * Created by lixian on 2016/5/25.

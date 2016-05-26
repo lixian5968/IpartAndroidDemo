@@ -1,5 +1,8 @@
 package com.zongbutech.iparty.beans;
 
+import com.loveiparty.http.Bean.JoinedUserBean;
+import com.loveiparty.http.Bean.PhotoBean;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +12,8 @@ import java.util.List;
  */
 
 public class HomePartyBean implements Serializable {
+
+
     public String address_text;
     public String address_thumbnail;
     public String address_url;

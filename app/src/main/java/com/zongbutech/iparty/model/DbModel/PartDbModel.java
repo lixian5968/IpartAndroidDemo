@@ -3,12 +3,12 @@ package com.zongbutech.iparty.model.DbModel;
 import android.content.Context;
 import android.util.Log;
 
+import com.loveiparty.http.Bean.PhotoBean;
+import com.loveiparty.http.db.Party;
+import com.loveiparty.http.db.PartyDao;
+import com.loveiparty.http.db.UrlString;
+import com.loveiparty.http.db.UrlStringDao;
 import com.zongbutech.iparty.beans.HomePartyBean;
-import com.zongbutech.iparty.beans.PhotoBean;
-import com.zongbutech.iparty.db.Party;
-import com.zongbutech.iparty.db.PartyDao;
-import com.zongbutech.iparty.db.UrlString;
-import com.zongbutech.iparty.db.UrlStringDao;
 
 import java.util.List;
 
@@ -81,13 +81,13 @@ public class PartDbModel extends BaseDbModel {
 
     //DbParty 插入数据
     private void insertParty(HomePartyBean mHomePartyBean, Party mParty) {
-        mParty.setAddress(mHomePartyBean.address_text);
+        mParty.setAddress_text(mHomePartyBean.address_text);
         mParty.setAddress_thumbnail(mHomePartyBean.address_thumbnail);
-        mParty.setAddressurl(mHomePartyBean.address_url);
+        mParty.setAddress_url(mHomePartyBean.address_url);
         mParty.setDeadline_time(mHomePartyBean.deadline_time);
         mParty.setEnd_time(mHomePartyBean.end_time);
         mParty.setFavorite_num(mHomePartyBean.favorite_num);
-        mParty.setHeadphoto(mHomePartyBean.head_photo);
+        mParty.setHead_photo(mHomePartyBean.head_photo);
         mParty.setUpdate_time(mHomePartyBean.last_update_time);
         mParty.setLeastnum(mHomePartyBean.least_num);
         mParty.setLimited(mHomePartyBean.limited);

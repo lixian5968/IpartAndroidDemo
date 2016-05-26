@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,8 @@ import com.zongbutech.iparty.R;
  * Created by lixian on 2016/2/15.
  */
 public abstract class BaseFragment extends Fragment {
+
+    public   LinearLayoutManager mLayoutManager;
 
     protected View view;
     public Context ct;
@@ -48,6 +51,9 @@ public abstract class BaseFragment extends Fragment {
     public abstract View getResourcesView(LayoutInflater inflater, ViewGroup container);
 
     public abstract void afterOncreate(Bundle savedInstanceState);
+
+
+
 
 
     public void showLoadFailMsg(String msg, Exception e) {

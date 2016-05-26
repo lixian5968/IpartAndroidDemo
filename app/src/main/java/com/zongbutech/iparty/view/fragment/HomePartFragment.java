@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.loveiparty.http.Utils.Urls;
+import com.loveiparty.http.Utils.Constants;
+import com.loveiparty.http.db.Party;
 import com.zongbutech.iparty.R;
-import com.zongbutech.iparty.db.Party;
 import com.zongbutech.iparty.presenter.HomePartPresenter;
 import com.zongbutech.iparty.view.IView.IHomePartView;
 import com.zongbutech.iparty.view.adapter.HomePartyAdapter;
@@ -99,6 +99,7 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
         }
     };
 
+
     private RecyclerView.OnScrollListener mOnScrollListener = new RecyclerView.OnScrollListener() {
         private int lastVisibleItem;
 
@@ -115,7 +116,7 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
                     && lastVisibleItem + 1 == mAdapter.getItemCount()
                     && mAdapter.isShowFooter()) {
                 //加载更多
-                pageIndex += Urls.PAZE_SIZE;
+                pageIndex += Constants.PAZE_SIZE;
                 mHomePartPresenter.loadParts(type, pageIndex);
             }
         }
@@ -126,9 +127,9 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
     @Override
     public void onRefresh() {
         pageIndex = 0;
-        if (mData != null) {
-            mData.clear();
-        }
+//        if (pageIndex == 0 && mData!=null) {
+//            mData.clear();
+//        }
         mHomePartPresenter.loadParts(type, pageIndex);
     }
 
@@ -140,21 +141,19 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
 
     // 添加 View
     @Override
-    public void addNews(List<Party> OldList, List<Party> newsList, boolean update) {
+    public void addNews(List<Party> newsList) {
 
         mAdapter.isShowFooter(true);
         if (mData == null) {
             mData = new ArrayList<Party>();
         }
+        if (pageIndex == 0 && mData!=null) {
+            mData.clear();
+        }
         //如果没有更多数据了,则隐藏footer布局
         if (newsList != null && newsList.size() > 0) {
-            if (update && OldList!=null && OldList.size()>0) {
-                for (Party updateBean : OldList) {
-                    mData.remove(updateBean);
-                }
-            }
             mData.addAll(newsList);
-            if (newsList.size() < Urls.PAZE_SIZE * 10) {
+            if (newsList.size() < Constants.PAZE_SIZE * 10) {
                 mAdapter.isShowFooter(false);
             }
             if (pageIndex == 0) {
@@ -166,20 +165,6 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
             mAdapter.isShowFooter(false);
             mAdapter.notifyDataSetChanged();
         }
-
-
-
-//        if (newsList == null || newsList.size() == 0) {
-//            mAdapter.isShowFooter(false);
-//            mAdapter.notifyDataSetChanged();
-//            return;
-//        }
-//        mData.addAll(newsList);
-//        if (pageIndex == 0) {
-//            mAdapter.setmDate(mData);
-//        } else {
-//            mAdapter.notifyDataSetChanged();
-//        }
 
 
     }

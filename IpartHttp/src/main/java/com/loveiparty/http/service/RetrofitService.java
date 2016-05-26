@@ -44,7 +44,6 @@ public class RetrofitService {
                         //设置OKHttpClient为网络客户端
                 .client(mOkHttpClient)
                 .build();
-
     }
 
     private volatile static RetrofitService instance = null;

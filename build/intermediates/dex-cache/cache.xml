@@ -2,11 +2,11 @@
 <items version="2" >
 
     <item
-        jar="E:\Android_yjm_black\Android_coding\IpartDemo\greendaoIpartlib\build\libs\greendaoIpartlib.jar"
+        jar="E:\Android_yjm_black\Android_coding\IpartDemo\app\build\intermediates\exploded-aar\IpartDemo\IpartHttp\unspecified\jars\classes.jar"
         jumboMode="false"
         revision="23.0.2"
-        sha1="1d41081a22286f4b0dbf6b722015fa4c87b09816">
-        <dex dex="E:\Android_yjm_black\Android_coding\IpartDemo\app\build\intermediates\pre-dexed\debug\greendaoIpartlib-e2396bb867558c3bfb884b2c3816512cbb88dd49.jar" />
+        sha1="ee39961e0d6a86f99a8b5ea88d1b5c34949d0313">
+        <dex dex="E:\Android_yjm_black\Android_coding\IpartDemo\app\build\intermediates\pre-dexed\debug\classes-90b671b142cc4d55095f9fb4e69c4da3bd3c38df.jar" />
     </item>
 
 </items>

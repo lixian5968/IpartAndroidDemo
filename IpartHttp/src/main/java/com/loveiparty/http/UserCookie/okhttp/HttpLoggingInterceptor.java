@@ -1,5 +1,7 @@
 package com.loveiparty.http.UserCookie.okhttp;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.concurrent.TimeUnit;
@@ -121,11 +123,16 @@ public final class HttpLoggingInterceptor implements Interceptor {
         return level;
     }
 
+
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Level level = this.level;
 
         Request request = chain.request();
+
+        Log.e("ipartUrl",request.url().toString());
+
         if (level == Level.NONE || request.url().toString().endsWith(".gif") || request.url().toString().endsWith(".jpg") || request.url().toString().endsWith(".png")) {
             return chain.proceed(request);
         }

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.zongbutech.iparty.R;
-import com.zongbutech.iparty.view.fragment.DarenFragment;
+import com.zongbutech.iparty.view.fragment.HomeTalentFragment;
 import com.zongbutech.iparty.view.fragment.HomeFragment;
 import com.zongbutech.iparty.view.fragment.MeFragment;
 
@@ -44,7 +44,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     TextView[] mTextViews;
 
     HomeFragment mHomeFragment = null;
-    DarenFragment mDarenFragment = null;
+    HomeTalentFragment mDarenFragment = null;
     MeFragment mMeFragment = null;
 
     //当前界面的Fragment
@@ -62,7 +62,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
         if (savedInstanceState == null) {
             mHomeFragment = HomeFragment.newInstance();
-            mDarenFragment = DarenFragment.newInstance();
+            mDarenFragment = HomeTalentFragment.newInstance();
             mMeFragment = MeFragment.newInstance();
             mContent = mHomeFragment;
             getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, mHomeFragment).commit();
