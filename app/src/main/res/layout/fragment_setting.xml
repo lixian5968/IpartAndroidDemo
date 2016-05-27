@@ -1,0 +1,147 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="80dp">
+
+      <com.zhy.lxroundimage.LxRoundImageView
+          android:id="@+id/UserIcon"
+          android:layout_margin="5dp"
+          android:layout_alignParentBottom="true"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:src="@drawable/icon"
+          app:shape="circle"
+          app:borderColor="@color/colorAccent"
+          app:lx_borderWidth="2dp" />
+
+      <TextView
+          android:id="@+id/UserName"
+          android:layout_toRightOf="@+id/UserIcon"
+          android:layout_margin="5dp"
+          android:layout_alignParentBottom="true"
+          android:text="name"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+
+
+      <LinearLayout
+          android:id="@+id/UserMoreMessage"
+          android:gravity="bottom"
+          android:layout_alignParentRight="true"
+          android:layout_margin="5dp"
+          android:layout_alignParentBottom="true"
+          android:layout_width="wrap_content"
+          android:layout_height="50dp">
+
+          <TextView
+              android:text="更多信息"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content" />
+
+      </LinearLayout>
+
+
+  </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/mEtickets"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="我的电子票"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="我感兴趣的"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mOrders"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="我的订单"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="我的红包"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="邀请好友"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mSetting"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="设置"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:text="关于"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</LinearLayout>

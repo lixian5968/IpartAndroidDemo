@@ -13,7 +13,9 @@ import com.loveiparty.http.UserCookie.okhttp.HttpLoggingInterceptor;
 import com.loveiparty.http.UserCookie.storage.UserStorage;
 import com.loveiparty.http.db.DaoMaster;
 import com.loveiparty.http.db.DaoSession;
+import com.loveiparty.http.db.UserDao;
 import com.loveiparty.http.service.RetrofitService;
+import com.zongbutech.iparty.utils.db.SharePrefUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -62,6 +64,7 @@ public class MyApplication extends Application {
     public SQLiteDatabase db;
     public DaoMaster.DevOpenHelper helper;
     public DaoMaster daoMaster;
+
     private void setupDatabase() {
         // 通过 DaoMaster 的内部类 DevOpenHelper，你可以得到一个便利的 SQLiteOpenHelper 对象。
         // 可能你已经注意到了，你并不需要去编写「CREATE TABLE」这样的 SQL 语句，因为 greenDAO 已经帮你做了。
@@ -82,4 +85,15 @@ public class MyApplication extends Application {
         return db;
     }
 
+
+    public void Logout() {
+        int id = SharePrefUtil.getInt(getApplicationContext(), "userId", -1);
+        try {
+            daoSession.getUserDao().delete(daoSession.getUserDao().queryBuilder().where(UserDao.Properties.User_id.eq(id)).list().get(0));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        SharePrefUtil.saveBoolean(getApplicationContext(), "LoginSuccess", false);
+        SharePrefUtil.saveInt(getApplicationContext(), "userId", -1);
+    }
 }

@@ -24,22 +24,23 @@ public class UserDao extends AbstractDao<User, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property ObjectId = new Property(1, String.class, "objectId", false, "OBJECT_ID");
-        public final static Property Openid = new Property(2, String.class, "openid", false, "OPENID");
-        public final static Property Nickname = new Property(3, String.class, "nickname", false, "NICKNAME");
-        public final static Property Sex = new Property(4, Integer.class, "sex", false, "SEX");
-        public final static Property Province = new Property(5, String.class, "province", false, "PROVINCE");
-        public final static Property City = new Property(6, String.class, "city", false, "CITY");
-        public final static Property Country = new Property(7, String.class, "country", false, "COUNTRY");
-        public final static Property Headimgurl = new Property(8, String.class, "headimgurl", false, "HEADIMGURL");
-        public final static Property Phone = new Property(9, String.class, "phone", false, "PHONE");
-        public final static Property Created_time = new Property(10, java.util.Date.class, "created_time", false, "CREATED_TIME");
-        public final static Property Has_change_sex = new Property(11, Integer.class, "has_change_sex", false, "HAS_CHANGE_SEX");
-        public final static Property Access_token = new Property(12, String.class, "access_token", false, "ACCESS_TOKEN");
-        public final static Property Platform_id = new Property(13, Integer.class, "platform_id", false, "PLATFORM_ID");
-        public final static Property Thirdparty_account = new Property(14, String.class, "thirdparty_account", false, "THIRDPARTY_ACCOUNT");
-        public final static Property Type = new Property(15, Integer.class, "type", false, "TYPE");
-        public final static Property Update_time = new Property(16, java.util.Date.class, "update_time", false, "UPDATE_TIME");
+        public final static Property Avatar = new Property(1, String.class, "avatar", false, "AVATAR");
+        public final static Property Has_change_sex = new Property(2, Integer.class, "has_change_sex", false, "HAS_CHANGE_SEX");
+        public final static Property Last_update_time = new Property(3, java.util.Date.class, "last_update_time", false, "LAST_UPDATE_TIME");
+        public final static Property Nickname = new Property(4, String.class, "nickname", false, "NICKNAME");
+        public final static Property Open_id = new Property(5, String.class, "open_id", false, "OPEN_ID");
+        public final static Property Register_time = new Property(6, java.util.Date.class, "register_time", false, "REGISTER_TIME");
+        public final static Property Sex = new Property(7, Integer.class, "sex", false, "SEX");
+        public final static Property Telephone = new Property(8, String.class, "telephone", false, "TELEPHONE");
+        public final static Property User_id = new Property(9, Integer.class, "user_id", false, "USER_ID");
+        public final static Property User_type = new Property(10, Integer.class, "user_type", false, "USER_TYPE");
+        public final static Property ObjectId = new Property(11, String.class, "objectId", false, "OBJECT_ID");
+        public final static Property Province = new Property(12, String.class, "province", false, "PROVINCE");
+        public final static Property City = new Property(13, String.class, "city", false, "CITY");
+        public final static Property Country = new Property(14, String.class, "country", false, "COUNTRY");
+        public final static Property Access_token = new Property(15, String.class, "access_token", false, "ACCESS_TOKEN");
+        public final static Property Platform_id = new Property(16, Integer.class, "platform_id", false, "PLATFORM_ID");
+        public final static Property Thirdparty_account = new Property(17, String.class, "thirdparty_account", false, "THIRDPARTY_ACCOUNT");
     };
 
 
@@ -56,22 +57,23 @@ public class UserDao extends AbstractDao<User, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"USER\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"OBJECT_ID\" TEXT," + // 1: objectId
-                "\"OPENID\" TEXT," + // 2: openid
-                "\"NICKNAME\" TEXT," + // 3: nickname
-                "\"SEX\" INTEGER," + // 4: sex
-                "\"PROVINCE\" TEXT," + // 5: province
-                "\"CITY\" TEXT," + // 6: city
-                "\"COUNTRY\" TEXT," + // 7: country
-                "\"HEADIMGURL\" TEXT," + // 8: headimgurl
-                "\"PHONE\" TEXT," + // 9: phone
-                "\"CREATED_TIME\" INTEGER," + // 10: created_time
-                "\"HAS_CHANGE_SEX\" INTEGER," + // 11: has_change_sex
-                "\"ACCESS_TOKEN\" TEXT," + // 12: access_token
-                "\"PLATFORM_ID\" INTEGER," + // 13: platform_id
-                "\"THIRDPARTY_ACCOUNT\" TEXT," + // 14: thirdparty_account
-                "\"TYPE\" INTEGER," + // 15: type
-                "\"UPDATE_TIME\" INTEGER);"); // 16: update_time
+                "\"AVATAR\" TEXT," + // 1: avatar
+                "\"HAS_CHANGE_SEX\" INTEGER," + // 2: has_change_sex
+                "\"LAST_UPDATE_TIME\" INTEGER," + // 3: last_update_time
+                "\"NICKNAME\" TEXT," + // 4: nickname
+                "\"OPEN_ID\" TEXT," + // 5: open_id
+                "\"REGISTER_TIME\" INTEGER," + // 6: register_time
+                "\"SEX\" INTEGER," + // 7: sex
+                "\"TELEPHONE\" TEXT," + // 8: telephone
+                "\"USER_ID\" INTEGER," + // 9: user_id
+                "\"USER_TYPE\" INTEGER," + // 10: user_type
+                "\"OBJECT_ID\" TEXT," + // 11: objectId
+                "\"PROVINCE\" TEXT," + // 12: province
+                "\"CITY\" TEXT," + // 13: city
+                "\"COUNTRY\" TEXT," + // 14: country
+                "\"ACCESS_TOKEN\" TEXT," + // 15: access_token
+                "\"PLATFORM_ID\" INTEGER," + // 16: platform_id
+                "\"THIRDPARTY_ACCOUNT\" TEXT);"); // 17: thirdparty_account
     }
 
     /** Drops the underlying database table. */
@@ -90,84 +92,89 @@ public class UserDao extends AbstractDao<User, Long> {
             stmt.bindLong(1, id);
         }
  
-        String objectId = entity.getObjectId();
-        if (objectId != null) {
-            stmt.bindString(2, objectId);
-        }
- 
-        String openid = entity.getOpenid();
-        if (openid != null) {
-            stmt.bindString(3, openid);
-        }
- 
-        String nickname = entity.getNickname();
-        if (nickname != null) {
-            stmt.bindString(4, nickname);
-        }
- 
-        Integer sex = entity.getSex();
-        if (sex != null) {
-            stmt.bindLong(5, sex);
-        }
- 
-        String province = entity.getProvince();
-        if (province != null) {
-            stmt.bindString(6, province);
-        }
- 
-        String city = entity.getCity();
-        if (city != null) {
-            stmt.bindString(7, city);
-        }
- 
-        String country = entity.getCountry();
-        if (country != null) {
-            stmt.bindString(8, country);
-        }
- 
-        String headimgurl = entity.getHeadimgurl();
-        if (headimgurl != null) {
-            stmt.bindString(9, headimgurl);
-        }
- 
-        String phone = entity.getPhone();
-        if (phone != null) {
-            stmt.bindString(10, phone);
-        }
- 
-        java.util.Date created_time = entity.getCreated_time();
-        if (created_time != null) {
-            stmt.bindLong(11, created_time.getTime());
+        String avatar = entity.getAvatar();
+        if (avatar != null) {
+            stmt.bindString(2, avatar);
         }
  
         Integer has_change_sex = entity.getHas_change_sex();
         if (has_change_sex != null) {
-            stmt.bindLong(12, has_change_sex);
+            stmt.bindLong(3, has_change_sex);
+        }
+ 
+        java.util.Date last_update_time = entity.getLast_update_time();
+        if (last_update_time != null) {
+            stmt.bindLong(4, last_update_time.getTime());
+        }
+ 
+        String nickname = entity.getNickname();
+        if (nickname != null) {
+            stmt.bindString(5, nickname);
+        }
+ 
+        String open_id = entity.getOpen_id();
+        if (open_id != null) {
+            stmt.bindString(6, open_id);
+        }
+ 
+        java.util.Date register_time = entity.getRegister_time();
+        if (register_time != null) {
+            stmt.bindLong(7, register_time.getTime());
+        }
+ 
+        Integer sex = entity.getSex();
+        if (sex != null) {
+            stmt.bindLong(8, sex);
+        }
+ 
+        String telephone = entity.getTelephone();
+        if (telephone != null) {
+            stmt.bindString(9, telephone);
+        }
+ 
+        Integer user_id = entity.getUser_id();
+        if (user_id != null) {
+            stmt.bindLong(10, user_id);
+        }
+ 
+        Integer user_type = entity.getUser_type();
+        if (user_type != null) {
+            stmt.bindLong(11, user_type);
+        }
+ 
+        String objectId = entity.getObjectId();
+        if (objectId != null) {
+            stmt.bindString(12, objectId);
+        }
+ 
+        String province = entity.getProvince();
+        if (province != null) {
+            stmt.bindString(13, province);
+        }
+ 
+        String city = entity.getCity();
+        if (city != null) {
+            stmt.bindString(14, city);
+        }
+ 
+        String country = entity.getCountry();
+        if (country != null) {
+            stmt.bindString(15, country);
         }
  
         String access_token = entity.getAccess_token();
         if (access_token != null) {
-            stmt.bindString(13, access_token);
+            stmt.bindString(16, access_token);
         }
  
         Integer platform_id = entity.getPlatform_id();
         if (platform_id != null) {
-            stmt.bindLong(14, platform_id);
+            stmt.bindLong(17, platform_id);
         }
  
         String thirdparty_account = entity.getThirdparty_account();
         if (thirdparty_account != null) {
-            stmt.bindString(15, thirdparty_account);
-        }
- 
-        Integer type = entity.getType();
-        if (type != null) {
-            stmt.bindLong(16, type);
-        }
- 
-        java.util.Date update_time = entity.getUpdate_time();
-        if (update_time != null) {
-            stmt.bindLong(17, update_time.getTime());
+            stmt.bindString(18, thirdparty_account);
         }
     }
 
@@ -182,22 +189,23 @@ public class UserDao extends AbstractDao<User, Long> {
     public User readEntity(Cursor cursor, int offset) {
         User entity = new User( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // objectId
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // openid
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // nickname
-            cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // sex
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // province
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // city
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // country
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // headimgurl
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // phone
-            cursor.isNull(offset + 10) ? null : new java.util.Date(cursor.getLong(offset + 10)), // created_time
-            cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11), // has_change_sex
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // access_token
-            cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13), // platform_id
-            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // thirdparty_account
-            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // type
-            cursor.isNull(offset + 16) ? null : new java.util.Date(cursor.getLong(offset + 16)) // update_time
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // avatar
+            cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // has_change_sex
+            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)), // last_update_time
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // nickname
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // open_id
+            cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)), // register_time
+            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // sex
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // telephone
+            cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9), // user_id
+            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // user_type
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // objectId
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // province
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // city
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // country
+            cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15), // access_token
+            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16), // platform_id
+            cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17) // thirdparty_account
         );
         return entity;
     }
@@ -206,22 +214,23 @@ public class UserDao extends AbstractDao<User, Long> {
     @Override
     public void readEntity(Cursor cursor, User entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setObjectId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setOpenid(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setNickname(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setSex(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setProvince(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setCity(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setCountry(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setHeadimgurl(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setPhone(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
-        entity.setCreated_time(cursor.isNull(offset + 10) ? null : new java.util.Date(cursor.getLong(offset + 10)));
-        entity.setHas_change_sex(cursor.isNull(offset + 11) ? null : cursor.getInt(offset + 11));
-        entity.setAccess_token(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setPlatform_id(cursor.isNull(offset + 13) ? null : cursor.getInt(offset + 13));
-        entity.setThirdparty_account(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
-        entity.setType(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
-        entity.setUpdate_time(cursor.isNull(offset + 16) ? null : new java.util.Date(cursor.getLong(offset + 16)));
+        entity.setAvatar(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setHas_change_sex(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
+        entity.setLast_update_time(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
+        entity.setNickname(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setOpen_id(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setRegister_time(cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)));
+        entity.setSex(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
+        entity.setTelephone(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setUser_id(cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9));
+        entity.setUser_type(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
+        entity.setObjectId(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setProvince(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setCity(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setCountry(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setAccess_token(cursor.isNull(offset + 15) ? null : cursor.getString(offset + 15));
+        entity.setPlatform_id(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
+        entity.setThirdparty_account(cursor.isNull(offset + 17) ? null : cursor.getString(offset + 17));
      }
     
     /** @inheritdoc */

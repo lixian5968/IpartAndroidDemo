@@ -4,25 +4,26 @@ package com.loveiparty.http.db;
 /**
  * Entity mapped to table "USER".
  */
-public class User {
+public class User extends com.loveiparty.http.Bean.BaseHttpBean  {
 
     private Long id;
-    private String objectId;
-    private String openid;
+    private String avatar;
+    private Integer has_change_sex;
+    private java.util.Date last_update_time;
     private String nickname;
+    private String open_id;
+    private java.util.Date register_time;
     private Integer sex;
+    private String telephone;
+    private Integer user_id;
+    private Integer user_type;
+    private String objectId;
     private String province;
     private String city;
     private String country;
-    private String headimgurl;
-    private String phone;
-    private java.util.Date created_time;
-    private Integer has_change_sex;
     private String access_token;
     private Integer platform_id;
     private String thirdparty_account;
-    private Integer type;
-    private java.util.Date update_time;
 
     public User() {
     }
@@ -31,24 +32,25 @@ public class User {
         this.id = id;
     }
 
-    public User(Long id, String objectId, String openid, String nickname, Integer sex, String province, String city, String country, String headimgurl, String phone, java.util.Date created_time, Integer has_change_sex, String access_token, Integer platform_id, String thirdparty_account, Integer type, java.util.Date update_time) {
+    public User(Long id, String avatar, Integer has_change_sex, java.util.Date last_update_time, String nickname, String open_id, java.util.Date register_time, Integer sex, String telephone, Integer user_id, Integer user_type, String objectId, String province, String city, String country, String access_token, Integer platform_id, String thirdparty_account) {
         this.id = id;
-        this.objectId = objectId;
-        this.openid = openid;
+        this.avatar = avatar;
+        this.has_change_sex = has_change_sex;
+        this.last_update_time = last_update_time;
         this.nickname = nickname;
+        this.open_id = open_id;
+        this.register_time = register_time;
         this.sex = sex;
+        this.telephone = telephone;
+        this.user_id = user_id;
+        this.user_type = user_type;
+        this.objectId = objectId;
         this.province = province;
         this.city = city;
         this.country = country;
-        this.headimgurl = headimgurl;
-        this.phone = phone;
-        this.created_time = created_time;
-        this.has_change_sex = has_change_sex;
         this.access_token = access_token;
         this.platform_id = platform_id;
         this.thirdparty_account = thirdparty_account;
-        this.type = type;
-        this.update_time = update_time;
     }
 
     public Long getId() {
@@ -59,20 +61,28 @@ public class User {
         this.id = id;
     }
 
-    public String getObjectId() {
-        return objectId;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getOpenid() {
-        return openid;
+    public Integer getHas_change_sex() {
+        return has_change_sex;
     }
 
-    public void setOpenid(String openid) {
-        this.openid = openid;
+    public void setHas_change_sex(Integer has_change_sex) {
+        this.has_change_sex = has_change_sex;
+    }
+
+    public java.util.Date getLast_update_time() {
+        return last_update_time;
+    }
+
+    public void setLast_update_time(java.util.Date last_update_time) {
+        this.last_update_time = last_update_time;
     }
 
     public String getNickname() {
@@ -83,12 +93,60 @@ public class User {
         this.nickname = nickname;
     }
 
+    public String getOpen_id() {
+        return open_id;
+    }
+
+    public void setOpen_id(String open_id) {
+        this.open_id = open_id;
+    }
+
+    public java.util.Date getRegister_time() {
+        return register_time;
+    }
+
+    public void setRegister_time(java.util.Date register_time) {
+        this.register_time = register_time;
+    }
+
     public Integer getSex() {
         return sex;
     }
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public Integer getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(Integer user_type) {
+        this.user_type = user_type;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 
     public String getProvince() {
@@ -115,38 +173,6 @@ public class User {
         this.country = country;
     }
 
-    public String getHeadimgurl() {
-        return headimgurl;
-    }
-
-    public void setHeadimgurl(String headimgurl) {
-        this.headimgurl = headimgurl;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public java.util.Date getCreated_time() {
-        return created_time;
-    }
-
-    public void setCreated_time(java.util.Date created_time) {
-        this.created_time = created_time;
-    }
-
-    public Integer getHas_change_sex() {
-        return has_change_sex;
-    }
-
-    public void setHas_change_sex(Integer has_change_sex) {
-        this.has_change_sex = has_change_sex;
-    }
-
     public String getAccess_token() {
         return access_token;
     }
@@ -169,22 +195,6 @@ public class User {
 
     public void setThirdparty_account(String thirdparty_account) {
         this.thirdparty_account = thirdparty_account;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public java.util.Date getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(java.util.Date update_time) {
-        this.update_time = update_time;
     }
 
 }

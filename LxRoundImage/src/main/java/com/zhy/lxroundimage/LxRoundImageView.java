@@ -45,7 +45,7 @@ public class LxRoundImageView extends ImageView {
 
         TypedArray mTypedArray = context.obtainStyledAttributes(attrs, R.styleable.LxImage);
         mColor = mTypedArray.getColor(R.styleable.LxImage_borderColor, ct.getResources().getColor(R.color.white));
-        mDimens = mTypedArray.getDimension(R.styleable.LxImage_borderWidth, 0);
+        mDimens = mTypedArray.getDimension(R.styleable.LxImage_lx_borderWidth, 0);
         ShapeType = mTypedArray.getInt(R.styleable.LxImage_shape, Shape.CIRCLE);
         roundRadius = mTypedArray.getDimension(R.styleable.LxImage_roundRadius, 0);
         LeftTopRadius = mTypedArray.getDimension(R.styleable.LxImage_LeftTopRadius, 0);

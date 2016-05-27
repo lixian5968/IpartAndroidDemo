@@ -169,7 +169,7 @@ public class MyClass {
         Party.addStringProperty("title");
         Party.addStringProperty("types");
         Party.addIntProperty("week_activity");
-
+        //没用到了
         Party.addStringProperty("only");
         Party.addIntProperty("leastnum");
         Party.addIntProperty("sold");
@@ -214,23 +214,26 @@ public class MyClass {
         Talent.addDateProperty("update_time");
 
         Entity User = schema.addEntity("User");
+        User.setSuperclass("com.loveiparty.http.Bean.BaseHttpBean");
         User.addIdProperty();
-        User.addStringProperty("objectId");
-        User.addStringProperty("openid");
+        User.addStringProperty("avatar");
+        User.addIntProperty("has_change_sex");
+        User.addDateProperty("last_update_time");
         User.addStringProperty("nickname");
+        User.addStringProperty("open_id");
+        User.addDateProperty("register_time");
         User.addIntProperty("sex");
+        User.addStringProperty("telephone");
+        User.addIntProperty("user_id");
+        User.addIntProperty("user_type");
+        User.addStringProperty("objectId");
         User.addStringProperty("province");
         User.addStringProperty("city");
         User.addStringProperty("country");
-        User.addStringProperty("headimgurl");
-        User.addStringProperty("phone");
-        User.addDateProperty("created_time");
-        User.addIntProperty("has_change_sex");
         User.addStringProperty("access_token");
         User.addIntProperty("platform_id");
         User.addStringProperty("thirdparty_account");
-        User.addIntProperty("type");
-        User.addDateProperty("update_time");
+
 
 
         Entity UrlString = schema.addEntity("UrlString");

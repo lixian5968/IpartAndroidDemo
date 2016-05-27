@@ -7,7 +7,6 @@ import com.google.gson.JsonObject;
 import com.loveiparty.http.Utils.Constants;
 import com.loveiparty.http.Utils.JsonUtils;
 import com.loveiparty.http.db.Party;
-import com.zongbutech.iparty.model.DbModel.PartDbModel;
 import com.zongbutech.iparty.view.IView.IHomePartView;
 
 import java.util.ArrayList;
@@ -25,13 +24,11 @@ public class HomePartPresenter extends BasePresenter {
     private static final String TAG = HomePartPresenter.class.getSimpleName();
     private IHomePartView mIHomePartView;
     private Context ct;
-    PartDbModel mPartDbModel;
 
     public HomePartPresenter(Context ct, IHomePartView mIHomePartView) {
         super(ct);
         this.mIHomePartView = mIHomePartView;
         this.ct = ct;
-        mPartDbModel = new PartDbModel(ct);
     }
 
     String url;

@@ -10,4 +10,8 @@ public class Constants {
     public static final int PAZE_SIZE = 1;
 
     public static final int PAZE_Roll = 10;
+
+
+    public static final String BaseImageUrl = "http://wechat.loveiparty.com/";
+
 }

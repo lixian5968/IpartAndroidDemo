@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.google.gson.JsonObject;
-import com.loveiparty.http.Bean.HttpUserInfo;
 import com.loveiparty.http.Utils.JsonUtils;
+import com.loveiparty.http.db.User;
 import com.zongbutech.iparty.model.DbModel.UserDbModel;
 import com.zongbutech.iparty.utils.db.SharePrefUtil;
 import com.zongbutech.iparty.view.IView.ILoginView;
@@ -64,9 +64,9 @@ public class LoginPresenter extends BasePresenter {
                         int code = mJsonObject.get("code").getAsInt();
                         if (code == 0) {
                             String result = mJsonObject.get("data").getAsJsonArray().get(0).toString();
-                            HttpUserInfo mHttpUserInfo = JsonUtils.deserialize(result, HttpUserInfo.class);
-                            mLoginDbModel.saveUser(mHttpUserInfo);
-                            SharePrefUtil.saveLong(ct, "userId", (long) mHttpUserInfo.user_id);
+                            User mUser = JsonUtils.deserialize(result, User.class);
+                            mLoginDbModel.saveUser(mUser);
+                            SharePrefUtil.saveInt(ct, "userId", mUser.getUser_id());
                             return mIpartApi.IpartGetHongBao(HongBaoPage, HongBaoRoll, only_valid).subscribeOn(Schedulers.io());
                         } else {
                             return Observable.error(new RuntimeException(mJsonObject.toString()));
@@ -81,7 +81,7 @@ public class LoginPresenter extends BasePresenter {
                                 int code = mJsonObject.get("code").getAsInt();
                                 if (code == 0) {
                                     mILoginView.loginSuccess("登陆成功");
-                                    SharePrefUtil.saveBoolean(ct,"LoginSuccess",true);
+                                    SharePrefUtil.saveBoolean(ct, "LoginSuccess", true);
                                 } else {
                                     mILoginView.mToast(mJsonObject.toString());
                                 }

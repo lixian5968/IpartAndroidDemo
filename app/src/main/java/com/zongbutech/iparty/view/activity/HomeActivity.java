@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.zongbutech.iparty.R;
 import com.zongbutech.iparty.view.fragment.HomeTalentFragment;
 import com.zongbutech.iparty.view.fragment.HomeFragment;
-import com.zongbutech.iparty.view.fragment.MeFragment;
+import com.zongbutech.iparty.view.fragment.SettingFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,10 +45,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     HomeFragment mHomeFragment = null;
     HomeTalentFragment mDarenFragment = null;
-    MeFragment mMeFragment = null;
+    SettingFragment mMeFragment = null;
 
     //当前界面的Fragment
     Fragment mContent = null;
+
+    public static HomeActivity instance = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +58,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-
+        instance =this;
 
 
 
         if (savedInstanceState == null) {
             mHomeFragment = HomeFragment.newInstance();
             mDarenFragment = HomeTalentFragment.newInstance();
-            mMeFragment = MeFragment.newInstance();
+            mMeFragment = SettingFragment.newInstance();
             mContent = mHomeFragment;
             getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, mHomeFragment).commit();
         }

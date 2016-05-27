@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class BaseActivity extends AppCompatActivity {
     public Context ct;
     public String Tag = "BaseActivity";
     public IpartApi mIpartApi;
+    public int width;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,14 @@ public class BaseActivity extends AppCompatActivity {
 
         ct = this;
         mIpartApi = ((MyApplication) ct.getApplicationContext()).getmIpartApi();
+
+
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+        width = metric.widthPixels;
+        int height = metric.heightPixels;   // 屏幕高度（像素）
+        float density = metric.density;      // 屏幕密度（0.75 / 1.0 / 1.5）
+        int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
     }
 
     public void finish(View v) {
