@@ -1,1 +1,1 @@
-include ':app', ':IpartHttp', ':greendaoIpartlib', ':okhttp3-persistent-cookiejar', ':lxview'
+include ':app', ':IpartHttp', ':greendaoIpartlib', ':okhttp3-persistent-cookiejar', ':lxview', ':LxRoundImage'
