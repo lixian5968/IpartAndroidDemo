@@ -17,6 +17,7 @@ import com.zongbutech.iparty.R;
 import com.zongbutech.iparty.presenter.HomeSettingPresenter;
 import com.zongbutech.iparty.utils.db.SharePrefUtil;
 import com.zongbutech.iparty.view.IView.IHomeSettingView;
+import com.zongbutech.iparty.view.activity.Setting.CouponsSetiingActivity;
 import com.zongbutech.iparty.view.activity.Setting.EticketsSetiingActivity;
 import com.zongbutech.iparty.view.activity.Setting.FavoritesSetiingActivity;
 import com.zongbutech.iparty.view.activity.Setting.OrdersSetiingActivity;
@@ -107,6 +108,17 @@ public class SettingFragment extends BaseFragment implements IHomeSettingView {
         it.putExtras(bd);
         startActivity(it);
     }
+
+    @OnClick(R.id.mCoupons)
+    void mCoupons(View view) {
+        Intent it = new Intent(ct, CouponsSetiingActivity.class);
+        Bundle bd = new Bundle();
+        bd.putSerializable("User", mUser);
+        it.putExtras(bd);
+        startActivity(it);
+    }
+
+
 
     @OnClick(R.id.mSetting)
     void mSetting(View view) {

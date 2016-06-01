@@ -73,7 +73,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             if (mBean == null) {
                 return;
             }
-            ((ItemViewHolder) holder).orders.setText(mBean.getSex() + "");
+            ((ItemViewHolder) holder).orders.setText(mBean.getParty_title() + "");
 
         }
     }

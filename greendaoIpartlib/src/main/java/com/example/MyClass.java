@@ -88,14 +88,13 @@ public class MyClass {
 //我要留言
         Entity Message = schema.addEntity("Message");
         Message.addIdProperty();
-        Message.addStringProperty("objectId");
-        Message.addStringProperty("user_id");
-        Message.addStringProperty("party_id");
+        Message.addStringProperty("avatar");
         Message.addStringProperty("content");
-        Message.addDateProperty("created_time");
-        Message.addStringProperty("status");
-        Message.addStringProperty("user_ip");
-        Message.addDateProperty("update_time");
+        Message.addDateProperty("created_at");
+        Message.addStringProperty("nickname");
+        Message.addIntProperty("sex");
+        Message.addIntProperty("user_id");
+        Message.addStringProperty("party_id");
 
 
 //        推送消息
@@ -112,6 +111,7 @@ public class MyClass {
 
 //订单
         Entity Order = schema.addEntity("Order");
+        Order.setSuperclass("com.loveiparty.http.Bean.BaseHttpBean");
         Order.addIdProperty();
         Order.addStringProperty("objectId");
         Order.addStringProperty("user_id");
@@ -119,13 +119,14 @@ public class MyClass {
         Order.addIntProperty("status");
         Order.addIntProperty("refund_state");
         Order.addDateProperty("created_time");
-        Order.addDateProperty("party_time");
+        Order.addStringProperty("party_time");
         Order.addStringProperty("phone");
         Order.addIntProperty("sex");
         Order.addIntProperty("isshare");
         Order.addStringProperty("share_user_id");
         Order.addStringProperty("share_id");
-        Order.addDateProperty("paytime");
+        Order.addStringProperty("paytime");
+        Order.addStringProperty("party_title");
         Order.addIntProperty("issendmsg");
         Order.addIntProperty("send_notifications");
         Order.addIntProperty("is_del");

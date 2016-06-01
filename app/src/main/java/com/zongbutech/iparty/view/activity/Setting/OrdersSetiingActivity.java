@@ -68,6 +68,9 @@ public class OrdersSetiingActivity extends BaseActivity {
             OrdersFragment mOrdersFragment = new OrdersFragment();
             Bundle bd = new Bundle();
             bd.putSerializable("mUser", mUser);
+            if(position==0){
+                bd.putString("mtype","1,2,3,11,12,13,21,22,31,32,33,34,35");
+            }
             mOrdersFragment.setArguments(bd);
             return mOrdersFragment;
         }

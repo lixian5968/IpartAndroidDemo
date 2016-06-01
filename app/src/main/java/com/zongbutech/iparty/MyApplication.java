@@ -3,21 +3,13 @@ package com.zongbutech.iparty;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.franmontiel.persistentcookiejar.ClearableCookieJar;
-import com.franmontiel.persistentcookiejar.PersistentCookieJar;
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.loveiparty.http.API.IpartApi;
-import com.loveiparty.http.UserCookie.okhttp.CookieInterceptor;
-import com.loveiparty.http.UserCookie.okhttp.HttpLoggingInterceptor;
-import com.loveiparty.http.UserCookie.storage.UserStorage;
+import com.loveiparty.http.Utils.OkHttpClientServer;
 import com.loveiparty.http.db.DaoMaster;
 import com.loveiparty.http.db.DaoSession;
 import com.loveiparty.http.db.UserDao;
 import com.loveiparty.http.service.RetrofitService;
 import com.zongbutech.iparty.utils.db.SharePrefUtil;
-
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 
@@ -28,33 +20,21 @@ public class MyApplication extends Application {
 
 
     OkHttpClient mOkHttpClient;
-    ClearableCookieJar cookieJar;
     IpartApi mIpartApi;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
-        UserStorage mUserStorage = new UserStorage(getApplicationContext());
-        CookieInterceptor mCookieInterceptor = new CookieInterceptor(mUserStorage);
-        OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(20 * 1000, TimeUnit.MILLISECONDS).readTimeout(20 * 1000, TimeUnit.MILLISECONDS);
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        builder.addInterceptor(logging);
-        builder.addInterceptor(mCookieInterceptor);
-        cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(getApplicationContext()));
-        mOkHttpClient = builder.cookieJar(cookieJar).build();
+        mOkHttpClient = OkHttpClientServer.getOkHttpClient(getApplicationContext());
         mIpartApi = RetrofitService.getInstance(mOkHttpClient).createService(IpartApi.class);
         setupDatabase();
     }
+
 
     public OkHttpClient getmOkHttpClient() {
         return mOkHttpClient;
     }
 
-    public ClearableCookieJar getCookieJar() {
-        return cookieJar;
-    }
 
     public IpartApi getmIpartApi() {
         return mIpartApi;

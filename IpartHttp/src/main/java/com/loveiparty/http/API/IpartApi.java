@@ -20,68 +20,85 @@ import rx.Observable;
 public interface IpartApi {
 
     //用户登录
-    @POST("/open/api/v1/session")
+    @POST("api/v1/session")
     Observable<JsonObject> IpartLogin(@Body JsonObject mJsonObject);
 
     //获取用户信息
-    @GET("/open/api/v1/users/{userID}")
+    @GET("api/v1/users/{userID}")
     Observable<JsonObject> IpartGetUserByID(@Path("userID") String username);
 
     //用户注销
-    @DELETE("/open/api/v1/session")
+    @DELETE("api/v1/session")
     Observable<JsonObject> IpartLogout();
 
     //获取用户优惠卷
-    @GET("/open/api/v1/coupons")
+    @GET("api/v1/coupons")
     Observable<JsonObject> IpartGetHongBao(@Query("page") int page, @Query("roll") int roll, @Query("only_valid") int only_valid);
 
 
     //修改密码 获取用户短信验证码
-    @GET("/open/api/v1/users/{telephone}/reset_password")
+    @GET("api/v1/users/{telephone}/reset_password")
     Observable<JsonObject> getPhoneCodes(@Path("telephone") String telephone);
 
     //修改密码 获取用户短信验证码
-    @PUT("/open/api/v1/users/{telephone}/reset_password")
+    @PUT("api/v1/users/{telephone}/reset_password")
     Observable<JsonObject> PutPhoneCodes(@Path("telephone") String telephone, @Body JsonObject mJsonObject);
 
 
     //获取part的详细信息
-    @GET("/open/api/v1/partylist/{partId}")
+    @GET("api/v1/partylist/{partId}")
     Observable<JsonObject> getPart(@Path("partId") String partId);
 
 
     //获取part的列表
-    @GET("/open/api/v1/partylist/{page}/{roll}")
+    @GET("api/v1/partylist/{page}/{roll}")
     Observable<JsonObject> getParts(@Path("page") int page, @Path("roll") int roll, @Query("types") int types, @Query("joined_users") int joined_users);
 
 
     //获取Talent的列表
-    @GET("/open/api/v1/users/talents/{page}/{roll}")
+    @GET("api/v1/users/talents/{page}/{roll}")
     Observable<JsonObject> getTalents(@Path("page") int page, @Path("roll") int roll, @Query("identify") int identify);
 
 
     //上传图片
     @Multipart
-    @POST("/open/api/v1/upload/images")
+    @POST("api/v1/upload/images")
     Observable<JsonObject> uploadImage(@Part("fileName") String description, @Part("file\"; filename=\"avatar.jpg\"") RequestBody imgs);
 
 
     //上传图片
-    @PUT("/open/api/v1/users/{UserId}")
+    @PUT("api/v1/users/{UserId}")
     Observable<JsonObject> PutUserInfors(@Path("UserId") int UserId, @Body JsonObject mJsonObject);
 
     //的到电子票
-    @GET("/open/api/v1/orders/etickets")
+    @GET("api/v1/orders/etickets")
     Observable<JsonObject> getUserEtickets(@Query("page") int page, @Query("roll") int roll);
 
     //的到感兴趣的
-    @GET("/open/api/v1/favorites")
+    @GET("api/v1/favorites")
     Observable<JsonObject> getUserFavorites(@Query("page") int page, @Query("roll") int roll);
 
     //获取订单
-    @GET("/open/api/v1/orders/users/{UserId}")
+    @GET("api/v1/orders/users/{UserId}")
     Observable<JsonObject> getUserOrders(@Path("UserId") int UserId, @Query("types") String types, @Query("page") int page, @Query("roll") int roll);
 
+    //获取Message 通过 party的id
+    @GET("api/v1/messages/{PartyId}/{page}/{roll}")
+    Observable<JsonObject> getMessageById(@Path("PartyId") int PartyId, @Query("page") int page, @Query("roll") int roll);
 
+    //判断用户是否喜欢这个party
+    @GET("api/v1/favorites/query_me/{PartyId}")
+    Observable<JsonObject> CheckLoveParty(@Path("PartyId") int PartyId);
+
+    //的到喜欢这个party的用户列表
+    @GET("api/v1/favorites/{PartyId}")
+    Observable<JsonObject> getUserByLoveParty(@Path("PartyId") int PartyId);
+
+    //发送message
+    @POST("api/v1/messages/{PartyId}")
+    Observable<JsonObject> postMessage(@Path("PartyId") int PartyId,@Body JsonObject mJsonObject);
+
+    @GET("api/v1/users/{UserId}")
+    Observable<JsonObject> getUserByTalent(@Path("UserId") int UserId);
 
 }

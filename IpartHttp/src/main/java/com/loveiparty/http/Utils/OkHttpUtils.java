@@ -5,20 +5,13 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import com.franmontiel.persistentcookiejar.PersistentCookieJar;
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.google.gson.internal.$Gson$Types;
-import com.loveiparty.http.UserCookie.okhttp.CookieInterceptor;
-import com.loveiparty.http.UserCookie.okhttp.HttpLoggingInterceptor;
-import com.loveiparty.http.UserCookie.storage.UserStorage;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.Call;
 import okhttp3.FormBody;
@@ -36,6 +29,9 @@ import okhttp3.Response;
  */
 public class OkHttpUtils {
 
+
+
+
     private static final String TAG = "OkHttpUtils";
 
     private static OkHttpUtils mInstance;
@@ -43,16 +39,7 @@ public class OkHttpUtils {
     private Handler mDelivery;
 
     private OkHttpUtils(Context ct) {
-        UserStorage mUserStorage = new UserStorage(ct);
-        CookieInterceptor mCookieInterceptor = new CookieInterceptor(mUserStorage);
-        OkHttpClient.Builder builder = new OkHttpClient.Builder().connectTimeout(20 * 1000, TimeUnit.MILLISECONDS).readTimeout(20 * 1000, TimeUnit.MILLISECONDS);
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
-        builder.addInterceptor(logging);
-        builder.addInterceptor(mCookieInterceptor);
-        PersistentCookieJar cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(ct));
-        mOkHttpClient = builder.cookieJar(cookieJar).build();
-
+        mOkHttpClient = OkHttpClientServer.getOkHttpClient(ct);
         //1.要刷新UI，handler要用到主线程的looper。
         // 那么在主线程 Handler handler = new Handler();，
         // 如果在其他线程，也要满足这个功能的话，要Handler handler = new Handler(Looper.getMainLooper());
@@ -204,19 +191,19 @@ public class OkHttpUtils {
      * @param url      请求url
      * @param callback 请求回调
      */
-    public static void get(Context ct,String url, ResultCallback callback) {
+    public static void get(Context ct, String url, ResultCallback callback) {
         getmInstance(ct).getRequest(url, callback);
     }
 
-    public static String get(Context ct,String url) {
+    public static String get(Context ct, String url) {
         return getmInstance(ct).getRequest(url);
     }
 
-    public static void Delete(Context ct,String url, ResultCallback callback) {
+    public static void Delete(Context ct, String url, ResultCallback callback) {
         getmInstance(ct).DeleteRequest(url, callback);
     }
 
-    public static String Delete(Context ct,String url) {
+    public static String Delete(Context ct, String url) {
         return getmInstance(ct).DeleteRequest(url);
     }
 
@@ -228,11 +215,11 @@ public class OkHttpUtils {
      * @param callback 请求回调
      * @param params   请求参数
      */
-    public static void post(Context ct,String url, final ResultCallback callback, List<Param> params) {
+    public static void post(Context ct, String url, final ResultCallback callback, List<Param> params) {
         getmInstance(ct).postRequest(url, callback, params);
     }
 
-    public static String post(Context ct,String url, List<Param> params) {
+    public static String post(Context ct, String url, List<Param> params) {
         return getmInstance(ct).postRequest(url, params);
     }
 
@@ -243,11 +230,11 @@ public class OkHttpUtils {
      * @param callback 请求回调
      * @param params   请求参数
      */
-    public static void put(Context ct,String url, final ResultCallback callback, List<Param> params) {
+    public static void put(Context ct, String url, final ResultCallback callback, List<Param> params) {
         getmInstance(ct).putRequest(url, callback, params);
     }
 
-    public static String put(Context ct,String url, List<Param> params) {
+    public static String put(Context ct, String url, List<Param> params) {
         return getmInstance(ct).putRequest(url, params);
     }
 

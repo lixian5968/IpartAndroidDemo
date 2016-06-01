@@ -31,4 +31,5 @@ dependencies {
     compile project(':okhttp3-persistent-cookiejar')
     compile project(':lxview')
     compile project(':LxRoundImage')
+    compile project(':lxpagercycle')
 }

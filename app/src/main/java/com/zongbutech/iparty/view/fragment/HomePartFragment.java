@@ -1,5 +1,6 @@
 package com.zongbutech.iparty.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,6 +17,7 @@ import com.loveiparty.http.db.Party;
 import com.zongbutech.iparty.R;
 import com.zongbutech.iparty.presenter.HomePartPresenter;
 import com.zongbutech.iparty.view.IView.IHomePartView;
+import com.zongbutech.iparty.view.activity.Party.PartyItemActivity;
 import com.zongbutech.iparty.view.adapter.HomePartyAdapter;
 
 import java.util.ArrayList;
@@ -85,17 +87,12 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
     private HomePartyAdapter.OnItemClickListener mOnItemClickListener = new HomePartyAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
-//            HomePartyBean PartyBean = mAdapter.getItem(position);
-//            ((BaseActivity) getActivity()).mToast(PartyBean.title);
-//            Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-//            intent.putExtra("news", news);
-//
-//            View transitionView = view.findViewById(R.id.ivNews);
-//            ActivityOptionsCompat options =
-//                    ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(),
-//                            transitionView, getString(R.string.transition_news_img));
-//
-//            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+            Party mParty = mAdapter.getItem(position);
+            Intent intent = new Intent(getActivity(), PartyItemActivity.class);
+            intent.putExtra("mParty", mParty);
+            startActivity(intent);
+
+
         }
     };
 

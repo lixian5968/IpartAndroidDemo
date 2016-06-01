@@ -24,14 +24,13 @@ public class MessageDao extends AbstractDao<Message, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property ObjectId = new Property(1, String.class, "objectId", false, "OBJECT_ID");
-        public final static Property User_id = new Property(2, String.class, "user_id", false, "USER_ID");
-        public final static Property Party_id = new Property(3, String.class, "party_id", false, "PARTY_ID");
-        public final static Property Content = new Property(4, String.class, "content", false, "CONTENT");
-        public final static Property Created_time = new Property(5, java.util.Date.class, "created_time", false, "CREATED_TIME");
-        public final static Property Status = new Property(6, String.class, "status", false, "STATUS");
-        public final static Property User_ip = new Property(7, String.class, "user_ip", false, "USER_IP");
-        public final static Property Update_time = new Property(8, java.util.Date.class, "update_time", false, "UPDATE_TIME");
+        public final static Property Avatar = new Property(1, String.class, "avatar", false, "AVATAR");
+        public final static Property Content = new Property(2, String.class, "content", false, "CONTENT");
+        public final static Property Created_at = new Property(3, java.util.Date.class, "created_at", false, "CREATED_AT");
+        public final static Property Nickname = new Property(4, String.class, "nickname", false, "NICKNAME");
+        public final static Property Sex = new Property(5, Integer.class, "sex", false, "SEX");
+        public final static Property User_id = new Property(6, Integer.class, "user_id", false, "USER_ID");
+        public final static Property Party_id = new Property(7, String.class, "party_id", false, "PARTY_ID");
     };
 
 
@@ -48,14 +47,13 @@ public class MessageDao extends AbstractDao<Message, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"MESSAGE\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
-                "\"OBJECT_ID\" TEXT," + // 1: objectId
-                "\"USER_ID\" TEXT," + // 2: user_id
-                "\"PARTY_ID\" TEXT," + // 3: party_id
-                "\"CONTENT\" TEXT," + // 4: content
-                "\"CREATED_TIME\" INTEGER," + // 5: created_time
-                "\"STATUS\" TEXT," + // 6: status
-                "\"USER_IP\" TEXT," + // 7: user_ip
-                "\"UPDATE_TIME\" INTEGER);"); // 8: update_time
+                "\"AVATAR\" TEXT," + // 1: avatar
+                "\"CONTENT\" TEXT," + // 2: content
+                "\"CREATED_AT\" INTEGER," + // 3: created_at
+                "\"NICKNAME\" TEXT," + // 4: nickname
+                "\"SEX\" INTEGER," + // 5: sex
+                "\"USER_ID\" INTEGER," + // 6: user_id
+                "\"PARTY_ID\" TEXT);"); // 7: party_id
     }
 
     /** Drops the underlying database table. */
@@ -74,44 +72,39 @@ public class MessageDao extends AbstractDao<Message, Long> {
             stmt.bindLong(1, id);
         }
  
-        String objectId = entity.getObjectId();
-        if (objectId != null) {
-            stmt.bindString(2, objectId);
-        }
- 
-        String user_id = entity.getUser_id();
-        if (user_id != null) {
-            stmt.bindString(3, user_id);
-        }
- 
-        String party_id = entity.getParty_id();
-        if (party_id != null) {
-            stmt.bindString(4, party_id);
+        String avatar = entity.getAvatar();
+        if (avatar != null) {
+            stmt.bindString(2, avatar);
         }
  
         String content = entity.getContent();
         if (content != null) {
-            stmt.bindString(5, content);
+            stmt.bindString(3, content);
         }
  
-        java.util.Date created_time = entity.getCreated_time();
-        if (created_time != null) {
-            stmt.bindLong(6, created_time.getTime());
+        java.util.Date created_at = entity.getCreated_at();
+        if (created_at != null) {
+            stmt.bindLong(4, created_at.getTime());
         }
  
-        String status = entity.getStatus();
-        if (status != null) {
-            stmt.bindString(7, status);
+        String nickname = entity.getNickname();
+        if (nickname != null) {
+            stmt.bindString(5, nickname);
         }
  
-        String user_ip = entity.getUser_ip();
-        if (user_ip != null) {
-            stmt.bindString(8, user_ip);
+        Integer sex = entity.getSex();
+        if (sex != null) {
+            stmt.bindLong(6, sex);
         }
  
-        java.util.Date update_time = entity.getUpdate_time();
-        if (update_time != null) {
-            stmt.bindLong(9, update_time.getTime());
+        Integer user_id = entity.getUser_id();
+        if (user_id != null) {
+            stmt.bindLong(7, user_id);
+        }
+ 
+        String party_id = entity.getParty_id();
+        if (party_id != null) {
+            stmt.bindString(8, party_id);
         }
     }
 
@@ -126,14 +119,13 @@ public class MessageDao extends AbstractDao<Message, Long> {
     public Message readEntity(Cursor cursor, int offset) {
         Message entity = new Message( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // objectId
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // user_id
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // party_id
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // content
-            cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)), // created_time
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // status
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // user_ip
-            cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)) // update_time
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // avatar
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // content
+            cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)), // created_at
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // nickname
+            cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // sex
+            cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6), // user_id
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // party_id
         );
         return entity;
     }
@@ -142,14 +134,13 @@ public class MessageDao extends AbstractDao<Message, Long> {
     @Override
     public void readEntity(Cursor cursor, Message entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setObjectId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setUser_id(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setParty_id(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setContent(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setCreated_time(cursor.isNull(offset + 5) ? null : new java.util.Date(cursor.getLong(offset + 5)));
-        entity.setStatus(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setUser_ip(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setUpdate_time(cursor.isNull(offset + 8) ? null : new java.util.Date(cursor.getLong(offset + 8)));
+        entity.setAvatar(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setContent(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setCreated_at(cursor.isNull(offset + 3) ? null : new java.util.Date(cursor.getLong(offset + 3)));
+        entity.setNickname(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setSex(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
+        entity.setUser_id(cursor.isNull(offset + 6) ? null : cursor.getInt(offset + 6));
+        entity.setParty_id(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     /** @inheritdoc */

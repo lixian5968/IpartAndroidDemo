@@ -1,0 +1,80 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="排队详情" />
+
+        </RelativeLayout>
+
+
+        <com.lxpagercycle.LxCycleView
+            android:id="@+id/mLxCycleView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+
+        <TextView
+            android:id="@+id/party_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+        <TextView
+            android:id="@+id/user_message"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:id="@+id/user_love"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp" />
+
+        <TextView
+            android:id="@+id/users"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+
+        <RelativeLayout
+            android:id="@+id/talent_user"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <com.zhy.lxroundimage.LxRoundImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/UserIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentBottom="true"
+                android:src="@drawable/icon"
+                app:borderColor="@color/colorAccent"
+                app:lx_borderWidth="2dp"
+                app:shape="circle" />
+
+            <TextView
+                android:id="@+id/UserName"
+                android:text="name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

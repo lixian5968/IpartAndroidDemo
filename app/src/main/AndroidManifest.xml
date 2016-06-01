@@ -39,42 +39,46 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.Splash.SplashSelectActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.Splash.SplashSelectTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Login.LoginActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".view.activity.Login.LoginActivity"
-            android:label="@string/title_activity_login" >
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity android:name=".view.activity.Login.ResertPasswordActivity" >
+            android:name=".view.activity.Login.ResertPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Setting.UserItemSetiingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Setting.EticketsSetiingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Setting.FavoritesSetiingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Setting.OrdersSetiingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Setting.CouponsSetiingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Setting.SettingSetiingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Party.PartyItemActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.Party.PartyMessageActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".view.activity.Setting.UserItemSetiingActivity">
+            android:name=".view.activity.Talent.TalentItemActivity"
+            android:label="@string/title_activity_talent_item" >
         </activity>
-        <activity
-            android:name=".view.activity.Setting.EticketsSetiingActivity">
-        </activity>
-
-        <activity
-            android:name=".view.activity.Setting.FavoritesSetiingActivity">
-        </activity>
-        <activity
-            android:name=".view.activity.Setting.OrdersSetiingActivity">
-        </activity>
-        <activity
-            android:name=".view.activity.Setting.SettingSetiingActivity">
-        </activity>
-
     </application>
 
 </manifest>

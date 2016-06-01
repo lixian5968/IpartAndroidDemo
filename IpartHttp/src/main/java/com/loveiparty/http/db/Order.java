@@ -4,7 +4,7 @@ package com.loveiparty.http.db;
 /**
  * Entity mapped to table "ORDER".
  */
-public class Order {
+public class Order extends com.loveiparty.http.Bean.BaseHttpBean  {
 
     private Long id;
     private String objectId;
@@ -13,13 +13,14 @@ public class Order {
     private Integer status;
     private Integer refund_state;
     private java.util.Date created_time;
-    private java.util.Date party_time;
+    private String party_time;
     private String phone;
     private Integer sex;
     private Integer isshare;
     private String share_user_id;
     private String share_id;
-    private java.util.Date paytime;
+    private String paytime;
+    private String party_title;
     private Integer issendmsg;
     private Integer send_notifications;
     private Integer is_del;
@@ -36,7 +37,7 @@ public class Order {
         this.id = id;
     }
 
-    public Order(Long id, String objectId, String user_id, String party_id, Integer status, Integer refund_state, java.util.Date created_time, java.util.Date party_time, String phone, Integer sex, Integer isshare, String share_user_id, String share_id, java.util.Date paytime, Integer issendmsg, Integer send_notifications, Integer is_del, Integer discount, String out_trade_no, String bonus_id, Integer price, java.util.Date update_time) {
+    public Order(Long id, String objectId, String user_id, String party_id, Integer status, Integer refund_state, java.util.Date created_time, String party_time, String phone, Integer sex, Integer isshare, String share_user_id, String share_id, String paytime, String party_title, Integer issendmsg, Integer send_notifications, Integer is_del, Integer discount, String out_trade_no, String bonus_id, Integer price, java.util.Date update_time) {
         this.id = id;
         this.objectId = objectId;
         this.user_id = user_id;
@@ -51,6 +52,7 @@ public class Order {
         this.share_user_id = share_user_id;
         this.share_id = share_id;
         this.paytime = paytime;
+        this.party_title = party_title;
         this.issendmsg = issendmsg;
         this.send_notifications = send_notifications;
         this.is_del = is_del;
@@ -117,11 +119,11 @@ public class Order {
         this.created_time = created_time;
     }
 
-    public java.util.Date getParty_time() {
+    public String getParty_time() {
         return party_time;
     }
 
-    public void setParty_time(java.util.Date party_time) {
+    public void setParty_time(String party_time) {
         this.party_time = party_time;
     }
 
@@ -165,12 +167,20 @@ public class Order {
         this.share_id = share_id;
     }
 
-    public java.util.Date getPaytime() {
+    public String getPaytime() {
         return paytime;
     }
 
-    public void setPaytime(java.util.Date paytime) {
+    public void setPaytime(String paytime) {
         this.paytime = paytime;
+    }
+
+    public String getParty_title() {
+        return party_title;
+    }
+
+    public void setParty_title(String party_title) {
+        this.party_title = party_title;
     }
 
     public Integer getIssendmsg() {

@@ -30,21 +30,22 @@ public class OrderDao extends AbstractDao<Order, Long> {
         public final static Property Status = new Property(4, Integer.class, "status", false, "STATUS");
         public final static Property Refund_state = new Property(5, Integer.class, "refund_state", false, "REFUND_STATE");
         public final static Property Created_time = new Property(6, java.util.Date.class, "created_time", false, "CREATED_TIME");
-        public final static Property Party_time = new Property(7, java.util.Date.class, "party_time", false, "PARTY_TIME");
+        public final static Property Party_time = new Property(7, String.class, "party_time", false, "PARTY_TIME");
         public final static Property Phone = new Property(8, String.class, "phone", false, "PHONE");
         public final static Property Sex = new Property(9, Integer.class, "sex", false, "SEX");
         public final static Property Isshare = new Property(10, Integer.class, "isshare", false, "ISSHARE");
         public final static Property Share_user_id = new Property(11, String.class, "share_user_id", false, "SHARE_USER_ID");
         public final static Property Share_id = new Property(12, String.class, "share_id", false, "SHARE_ID");
-        public final static Property Paytime = new Property(13, java.util.Date.class, "paytime", false, "PAYTIME");
-        public final static Property Issendmsg = new Property(14, Integer.class, "issendmsg", false, "ISSENDMSG");
-        public final static Property Send_notifications = new Property(15, Integer.class, "send_notifications", false, "SEND_NOTIFICATIONS");
-        public final static Property Is_del = new Property(16, Integer.class, "is_del", false, "IS_DEL");
-        public final static Property Discount = new Property(17, Integer.class, "discount", false, "DISCOUNT");
-        public final static Property Out_trade_no = new Property(18, String.class, "out_trade_no", false, "OUT_TRADE_NO");
-        public final static Property Bonus_id = new Property(19, String.class, "bonus_id", false, "BONUS_ID");
-        public final static Property Price = new Property(20, Integer.class, "price", false, "PRICE");
-        public final static Property Update_time = new Property(21, java.util.Date.class, "update_time", false, "UPDATE_TIME");
+        public final static Property Paytime = new Property(13, String.class, "paytime", false, "PAYTIME");
+        public final static Property Party_title = new Property(14, String.class, "party_title", false, "PARTY_TITLE");
+        public final static Property Issendmsg = new Property(15, Integer.class, "issendmsg", false, "ISSENDMSG");
+        public final static Property Send_notifications = new Property(16, Integer.class, "send_notifications", false, "SEND_NOTIFICATIONS");
+        public final static Property Is_del = new Property(17, Integer.class, "is_del", false, "IS_DEL");
+        public final static Property Discount = new Property(18, Integer.class, "discount", false, "DISCOUNT");
+        public final static Property Out_trade_no = new Property(19, String.class, "out_trade_no", false, "OUT_TRADE_NO");
+        public final static Property Bonus_id = new Property(20, String.class, "bonus_id", false, "BONUS_ID");
+        public final static Property Price = new Property(21, Integer.class, "price", false, "PRICE");
+        public final static Property Update_time = new Property(22, java.util.Date.class, "update_time", false, "UPDATE_TIME");
     };
 
 
@@ -67,21 +68,22 @@ public class OrderDao extends AbstractDao<Order, Long> {
                 "\"STATUS\" INTEGER," + // 4: status
                 "\"REFUND_STATE\" INTEGER," + // 5: refund_state
                 "\"CREATED_TIME\" INTEGER," + // 6: created_time
-                "\"PARTY_TIME\" INTEGER," + // 7: party_time
+                "\"PARTY_TIME\" TEXT," + // 7: party_time
                 "\"PHONE\" TEXT," + // 8: phone
                 "\"SEX\" INTEGER," + // 9: sex
                 "\"ISSHARE\" INTEGER," + // 10: isshare
                 "\"SHARE_USER_ID\" TEXT," + // 11: share_user_id
                 "\"SHARE_ID\" TEXT," + // 12: share_id
-                "\"PAYTIME\" INTEGER," + // 13: paytime
-                "\"ISSENDMSG\" INTEGER," + // 14: issendmsg
-                "\"SEND_NOTIFICATIONS\" INTEGER," + // 15: send_notifications
-                "\"IS_DEL\" INTEGER," + // 16: is_del
-                "\"DISCOUNT\" INTEGER," + // 17: discount
-                "\"OUT_TRADE_NO\" TEXT," + // 18: out_trade_no
-                "\"BONUS_ID\" TEXT," + // 19: bonus_id
-                "\"PRICE\" INTEGER," + // 20: price
-                "\"UPDATE_TIME\" INTEGER);"); // 21: update_time
+                "\"PAYTIME\" TEXT," + // 13: paytime
+                "\"PARTY_TITLE\" TEXT," + // 14: party_title
+                "\"ISSENDMSG\" INTEGER," + // 15: issendmsg
+                "\"SEND_NOTIFICATIONS\" INTEGER," + // 16: send_notifications
+                "\"IS_DEL\" INTEGER," + // 17: is_del
+                "\"DISCOUNT\" INTEGER," + // 18: discount
+                "\"OUT_TRADE_NO\" TEXT," + // 19: out_trade_no
+                "\"BONUS_ID\" TEXT," + // 20: bonus_id
+                "\"PRICE\" INTEGER," + // 21: price
+                "\"UPDATE_TIME\" INTEGER);"); // 22: update_time
     }
 
     /** Drops the underlying database table. */
@@ -130,9 +132,9 @@ public class OrderDao extends AbstractDao<Order, Long> {
             stmt.bindLong(7, created_time.getTime());
         }
  
-        java.util.Date party_time = entity.getParty_time();
+        String party_time = entity.getParty_time();
         if (party_time != null) {
-            stmt.bindLong(8, party_time.getTime());
+            stmt.bindString(8, party_time);
         }
  
         String phone = entity.getPhone();
@@ -160,49 +162,54 @@ public class OrderDao extends AbstractDao<Order, Long> {
             stmt.bindString(13, share_id);
         }
  
-        java.util.Date paytime = entity.getPaytime();
+        String paytime = entity.getPaytime();
         if (paytime != null) {
-            stmt.bindLong(14, paytime.getTime());
+            stmt.bindString(14, paytime);
+        }
+ 
+        String party_title = entity.getParty_title();
+        if (party_title != null) {
+            stmt.bindString(15, party_title);
         }
  
         Integer issendmsg = entity.getIssendmsg();
         if (issendmsg != null) {
-            stmt.bindLong(15, issendmsg);
+            stmt.bindLong(16, issendmsg);
         }
  
         Integer send_notifications = entity.getSend_notifications();
         if (send_notifications != null) {
-            stmt.bindLong(16, send_notifications);
+            stmt.bindLong(17, send_notifications);
         }
  
         Integer is_del = entity.getIs_del();
         if (is_del != null) {
-            stmt.bindLong(17, is_del);
+            stmt.bindLong(18, is_del);
         }
  
         Integer discount = entity.getDiscount();
         if (discount != null) {
-            stmt.bindLong(18, discount);
+            stmt.bindLong(19, discount);
         }
  
         String out_trade_no = entity.getOut_trade_no();
         if (out_trade_no != null) {
-            stmt.bindString(19, out_trade_no);
+            stmt.bindString(20, out_trade_no);
         }
  
         String bonus_id = entity.getBonus_id();
         if (bonus_id != null) {
-            stmt.bindString(20, bonus_id);
+            stmt.bindString(21, bonus_id);
         }
  
         Integer price = entity.getPrice();
         if (price != null) {
-            stmt.bindLong(21, price);
+            stmt.bindLong(22, price);
         }
  
         java.util.Date update_time = entity.getUpdate_time();
         if (update_time != null) {
-            stmt.bindLong(22, update_time.getTime());
+            stmt.bindLong(23, update_time.getTime());
         }
     }
 
@@ -223,21 +230,22 @@ public class OrderDao extends AbstractDao<Order, Long> {
             cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // status
             cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5), // refund_state
             cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)), // created_time
-            cursor.isNull(offset + 7) ? null : new java.util.Date(cursor.getLong(offset + 7)), // party_time
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // party_time
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // phone
             cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9), // sex
             cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // isshare
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // share_user_id
             cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // share_id
-            cursor.isNull(offset + 13) ? null : new java.util.Date(cursor.getLong(offset + 13)), // paytime
-            cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14), // issendmsg
-            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // send_notifications
-            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16), // is_del
-            cursor.isNull(offset + 17) ? null : cursor.getInt(offset + 17), // discount
-            cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18), // out_trade_no
-            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // bonus_id
-            cursor.isNull(offset + 20) ? null : cursor.getInt(offset + 20), // price
-            cursor.isNull(offset + 21) ? null : new java.util.Date(cursor.getLong(offset + 21)) // update_time
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13), // paytime
+            cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14), // party_title
+            cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15), // issendmsg
+            cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16), // send_notifications
+            cursor.isNull(offset + 17) ? null : cursor.getInt(offset + 17), // is_del
+            cursor.isNull(offset + 18) ? null : cursor.getInt(offset + 18), // discount
+            cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19), // out_trade_no
+            cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20), // bonus_id
+            cursor.isNull(offset + 21) ? null : cursor.getInt(offset + 21), // price
+            cursor.isNull(offset + 22) ? null : new java.util.Date(cursor.getLong(offset + 22)) // update_time
         );
         return entity;
     }
@@ -252,21 +260,22 @@ public class OrderDao extends AbstractDao<Order, Long> {
         entity.setStatus(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
         entity.setRefund_state(cursor.isNull(offset + 5) ? null : cursor.getInt(offset + 5));
         entity.setCreated_time(cursor.isNull(offset + 6) ? null : new java.util.Date(cursor.getLong(offset + 6)));
-        entity.setParty_time(cursor.isNull(offset + 7) ? null : new java.util.Date(cursor.getLong(offset + 7)));
+        entity.setParty_time(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setPhone(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setSex(cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9));
         entity.setIsshare(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
         entity.setShare_user_id(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
         entity.setShare_id(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
-        entity.setPaytime(cursor.isNull(offset + 13) ? null : new java.util.Date(cursor.getLong(offset + 13)));
-        entity.setIssendmsg(cursor.isNull(offset + 14) ? null : cursor.getInt(offset + 14));
-        entity.setSend_notifications(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
-        entity.setIs_del(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
-        entity.setDiscount(cursor.isNull(offset + 17) ? null : cursor.getInt(offset + 17));
-        entity.setOut_trade_no(cursor.isNull(offset + 18) ? null : cursor.getString(offset + 18));
-        entity.setBonus_id(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
-        entity.setPrice(cursor.isNull(offset + 20) ? null : cursor.getInt(offset + 20));
-        entity.setUpdate_time(cursor.isNull(offset + 21) ? null : new java.util.Date(cursor.getLong(offset + 21)));
+        entity.setPaytime(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
+        entity.setParty_title(cursor.isNull(offset + 14) ? null : cursor.getString(offset + 14));
+        entity.setIssendmsg(cursor.isNull(offset + 15) ? null : cursor.getInt(offset + 15));
+        entity.setSend_notifications(cursor.isNull(offset + 16) ? null : cursor.getInt(offset + 16));
+        entity.setIs_del(cursor.isNull(offset + 17) ? null : cursor.getInt(offset + 17));
+        entity.setDiscount(cursor.isNull(offset + 18) ? null : cursor.getInt(offset + 18));
+        entity.setOut_trade_no(cursor.isNull(offset + 19) ? null : cursor.getString(offset + 19));
+        entity.setBonus_id(cursor.isNull(offset + 20) ? null : cursor.getString(offset + 20));
+        entity.setPrice(cursor.isNull(offset + 21) ? null : cursor.getInt(offset + 21));
+        entity.setUpdate_time(cursor.isNull(offset + 22) ? null : new java.util.Date(cursor.getLong(offset + 22)));
      }
     
     /** @inheritdoc */

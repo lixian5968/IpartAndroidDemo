@@ -16,6 +16,8 @@
     <string name="title_activity_splash_select">SplashSelectActivity</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_user_item_setiing">UserItemSetiingActivity</string>
+    <string name="title_activity_party_message">PartyMessageActivity</string>
+    <string name="title_activity_talent_item">TalentItemActivity</string>
 
 
 </resources>

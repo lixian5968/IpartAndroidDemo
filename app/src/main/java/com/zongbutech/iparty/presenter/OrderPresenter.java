@@ -44,15 +44,21 @@ public class OrderPresenter extends BasePresenter {
             public void call(JsonObject jsonObject) {
                 try {
                     int code = jsonObject.get("code").getAsInt();
-                    if (code == 0 && jsonObject.get("data")!=null) {
-                        JsonArray result = jsonObject.get("data").getAsJsonArray();
-                        List<Order> mBeans = new ArrayList<Order>();
-                        for (int i = 0; i < result.size(); i++) {
-                            Order mBean = JsonUtils.deserialize(result.get(i).toString(), Order.class);
-                            mBeans.add(mBean);
+                    if (code == 0) {
+                        if(jsonObject.get("data")!=null){
+                            JsonArray result = jsonObject.get("data").getAsJsonArray();
+                            List<Order> mBeans = new ArrayList<Order>();
+                            for (int i = 0; i < result.size(); i++) {
+                                Order mBean = JsonUtils.deserialize(result.get(i).toString(), Order.class);
+                                mBeans.add(mBean);
+                            }
+                            mIOrdersView.hideProgress();
+                            mIOrdersView.addBeans(mBeans);
+                        }else{
+                            mIOrdersView.hideProgress();
+                            mIOrdersView.addBeans(null);
                         }
-                        mIOrdersView.hideProgress();
-                        mIOrdersView.addBeans(mBeans);
+
                     } else {
                         mIOrdersView.hideProgress();
                         mIOrdersView.showLoadFailMsg(jsonObject.toString(), new Exception());

@@ -34,7 +34,12 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 
 public class RetrofitService {
-    private static final String API = "http://www.loveiparty.com";
+//    private static final String API = "http://www.loveiparty.com/open/";
+
+    private static final String API = "http://www.loveiparty.com/dev/open/";
+
+    //http://www.loveiparty.com/dev/open/
+
 
     protected RetrofitService(OkHttpClient mOkHttpClient) {
         retrofit = new Retrofit.Builder()

@@ -7,14 +7,13 @@ package com.loveiparty.http.db;
 public class Message {
 
     private Long id;
-    private String objectId;
-    private String user_id;
-    private String party_id;
+    private String avatar;
     private String content;
-    private java.util.Date created_time;
-    private String status;
-    private String user_ip;
-    private java.util.Date update_time;
+    private java.util.Date created_at;
+    private String nickname;
+    private Integer sex;
+    private Integer user_id;
+    private String party_id;
 
     public Message() {
     }
@@ -23,16 +22,15 @@ public class Message {
         this.id = id;
     }
 
-    public Message(Long id, String objectId, String user_id, String party_id, String content, java.util.Date created_time, String status, String user_ip, java.util.Date update_time) {
+    public Message(Long id, String avatar, String content, java.util.Date created_at, String nickname, Integer sex, Integer user_id, String party_id) {
         this.id = id;
-        this.objectId = objectId;
+        this.avatar = avatar;
+        this.content = content;
+        this.created_at = created_at;
+        this.nickname = nickname;
+        this.sex = sex;
         this.user_id = user_id;
         this.party_id = party_id;
-        this.content = content;
-        this.created_time = created_time;
-        this.status = status;
-        this.user_ip = user_ip;
-        this.update_time = update_time;
     }
 
     public Long getId() {
@@ -43,28 +41,12 @@ public class Message {
         this.id = id;
     }
 
-    public String getObjectId() {
-        return objectId;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getParty_id() {
-        return party_id;
-    }
-
-    public void setParty_id(String party_id) {
-        this.party_id = party_id;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getContent() {
@@ -75,36 +57,44 @@ public class Message {
         this.content = content;
     }
 
-    public java.util.Date getCreated_time() {
-        return created_time;
+    public java.util.Date getCreated_at() {
+        return created_at;
     }
 
-    public void setCreated_time(java.util.Date created_time) {
-        this.created_time = created_time;
+    public void setCreated_at(java.util.Date created_at) {
+        this.created_at = created_at;
     }
 
-    public String getStatus() {
-        return status;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getUser_ip() {
-        return user_ip;
+    public Integer getSex() {
+        return sex;
     }
 
-    public void setUser_ip(String user_ip) {
-        this.user_ip = user_ip;
+    public void setSex(Integer sex) {
+        this.sex = sex;
     }
 
-    public java.util.Date getUpdate_time() {
-        return update_time;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setUpdate_time(java.util.Date update_time) {
-        this.update_time = update_time;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getParty_id() {
+        return party_id;
+    }
+
+    public void setParty_id(String party_id) {
+        this.party_id = party_id;
     }
 
 }
