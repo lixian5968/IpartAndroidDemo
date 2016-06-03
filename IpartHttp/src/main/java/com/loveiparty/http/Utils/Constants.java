@@ -12,6 +12,10 @@ public class Constants {
     public static final int PAZE_Roll = 10;
 
 
-    public static final String BaseImageUrl = "http://wechat.loveiparty.com/";
+//    public static final String BaseImageUrl = "http://wechat.loveiparty.com/";
+
+    public static final String BaseImageUrl = "http://dev-weixin.loveiparty.com/";
+
+
 
 }

@@ -7,13 +7,18 @@ package com.loveiparty.http.db;
 public class Order extends com.loveiparty.http.Bean.BaseHttpBean  {
 
     private Long id;
-    private String objectId;
-    private String user_id;
+    private String order_id;
+    private java.util.Date order_time;
     private String party_id;
+    private java.util.Date party_time;
     private Integer status;
+    private String user_avatar;
+    private Integer user_id;
+    private String user_nickname;
+    private Integer user_sex;
+    private String objectId;
     private Integer refund_state;
     private java.util.Date created_time;
-    private String party_time;
     private String phone;
     private Integer sex;
     private Integer isshare;
@@ -37,15 +42,20 @@ public class Order extends com.loveiparty.http.Bean.BaseHttpBean  {
         this.id = id;
     }
 
-    public Order(Long id, String objectId, String user_id, String party_id, Integer status, Integer refund_state, java.util.Date created_time, String party_time, String phone, Integer sex, Integer isshare, String share_user_id, String share_id, String paytime, String party_title, Integer issendmsg, Integer send_notifications, Integer is_del, Integer discount, String out_trade_no, String bonus_id, Integer price, java.util.Date update_time) {
+    public Order(Long id, String order_id, java.util.Date order_time, String party_id, java.util.Date party_time, Integer status, String user_avatar, Integer user_id, String user_nickname, Integer user_sex, String objectId, Integer refund_state, java.util.Date created_time, String phone, Integer sex, Integer isshare, String share_user_id, String share_id, String paytime, String party_title, Integer issendmsg, Integer send_notifications, Integer is_del, Integer discount, String out_trade_no, String bonus_id, Integer price, java.util.Date update_time) {
         this.id = id;
-        this.objectId = objectId;
-        this.user_id = user_id;
+        this.order_id = order_id;
+        this.order_time = order_time;
         this.party_id = party_id;
+        this.party_time = party_time;
         this.status = status;
+        this.user_avatar = user_avatar;
+        this.user_id = user_id;
+        this.user_nickname = user_nickname;
+        this.user_sex = user_sex;
+        this.objectId = objectId;
         this.refund_state = refund_state;
         this.created_time = created_time;
-        this.party_time = party_time;
         this.phone = phone;
         this.sex = sex;
         this.isshare = isshare;
@@ -71,20 +81,20 @@ public class Order extends com.loveiparty.http.Bean.BaseHttpBean  {
         this.id = id;
     }
 
-    public String getObjectId() {
-        return objectId;
+    public String getOrder_id() {
+        return order_id;
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
+    public void setOrder_id(String order_id) {
+        this.order_id = order_id;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public java.util.Date getOrder_time() {
+        return order_time;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setOrder_time(java.util.Date order_time) {
+        this.order_time = order_time;
     }
 
     public String getParty_id() {
@@ -95,12 +105,60 @@ public class Order extends com.loveiparty.http.Bean.BaseHttpBean  {
         this.party_id = party_id;
     }
 
+    public java.util.Date getParty_time() {
+        return party_time;
+    }
+
+    public void setParty_time(java.util.Date party_time) {
+        this.party_time = party_time;
+    }
+
     public Integer getStatus() {
         return status;
     }
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getUser_avatar() {
+        return user_avatar;
+    }
+
+    public void setUser_avatar(String user_avatar) {
+        this.user_avatar = user_avatar;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUser_nickname() {
+        return user_nickname;
+    }
+
+    public void setUser_nickname(String user_nickname) {
+        this.user_nickname = user_nickname;
+    }
+
+    public Integer getUser_sex() {
+        return user_sex;
+    }
+
+    public void setUser_sex(Integer user_sex) {
+        this.user_sex = user_sex;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 
     public Integer getRefund_state() {
@@ -117,14 +175,6 @@ public class Order extends com.loveiparty.http.Bean.BaseHttpBean  {
 
     public void setCreated_time(java.util.Date created_time) {
         this.created_time = created_time;
-    }
-
-    public String getParty_time() {
-        return party_time;
-    }
-
-    public void setParty_time(String party_time) {
-        this.party_time = party_time;
     }
 
     public String getPhone() {

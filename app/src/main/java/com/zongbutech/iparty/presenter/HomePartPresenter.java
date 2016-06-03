@@ -12,6 +12,7 @@ import com.zongbutech.iparty.view.IView.IHomePartView;
 import java.util.ArrayList;
 import java.util.List;
 
+import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -34,12 +35,27 @@ public class HomePartPresenter extends BasePresenter {
     String url;
 
     //加载的的part类行
+    Observable<JsonObject> mObservable = null;
+
     public void loadParts(final int type, final int pageIndex) {
         if (pageIndex == 0) {
             mIHomePartView.showProgress();
         }
+        mObservable = mIpartApi.getParts(pageIndex + 1, Constants.PAZE_Roll, type, 1);
+        LoadPartys();
+    }
 
-        mIpartApi.getParts(pageIndex+1, Constants.PAZE_Roll, type, 1).subscribeOn(Schedulers.io())
+    public void loadPartsByTalentId( int pageIndex, int talentId) {
+        if (pageIndex == 0) {
+            mIHomePartView.showProgress();
+        }
+        mObservable = mIpartApi.getPartsByTalentId(talentId, pageIndex + 1, Constants.PAZE_Roll);
+        LoadPartys();
+    }
+
+
+    private void LoadPartys() {
+        mObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<JsonObject>() {
             @Override
             public void call(JsonObject jsonObject) {
@@ -59,13 +75,7 @@ public class HomePartPresenter extends BasePresenter {
                 }
             }
         });
-
-
-
-
     }
-
-
 
 
 }

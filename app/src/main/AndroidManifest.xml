@@ -77,7 +77,15 @@
         </activity>
         <activity
             android:name=".view.activity.Talent.TalentItemActivity"
-            android:label="@string/title_activity_talent_item" >
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".view.activity.Party.UserPushParty"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".view.activity.Party.JoinPartyActivity"
+            android:label="@string/title_activity_join_party" >
         </activity>
     </application>
 

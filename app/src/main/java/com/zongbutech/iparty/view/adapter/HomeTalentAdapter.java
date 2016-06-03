@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.loveiparty.http.Utils.Constants;
 import com.loveiparty.http.Utils.ImageLoaderUtils;
 import com.loveiparty.http.db.Talent;
 import com.zongbutech.iparty.R;
@@ -79,7 +80,7 @@ public class HomeTalentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 if (mBean.getAvatar().startsWith("http")) {
                     url = mBean.getAvatar();
                 } else {
-                    url = "http://wechat.loveiparty.com/" + mBean.getAvatar();
+                    url = Constants.BaseImageUrl + mBean.getAvatar();
                 }
                 ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).Item_All_Bg, url);
             }

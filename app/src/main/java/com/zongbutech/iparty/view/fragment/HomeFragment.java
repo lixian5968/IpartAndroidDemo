@@ -100,6 +100,7 @@ public class HomeFragment extends BaseFragment {
             HomePartFragment mHomePartFragment = new HomePartFragment();
             Bundle bd = new Bundle();
             bd.putInt("select", ClientMaps.partTypeToName.get(adapterTitle.get(position)));
+            bd.putString("from",HomeFragment.class.getSimpleName());
             mHomePartFragment.setArguments(bd);
             return mHomePartFragment;
         }

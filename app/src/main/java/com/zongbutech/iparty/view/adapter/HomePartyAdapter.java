@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.loveiparty.http.Bean.JoinedUserBean;
+import com.loveiparty.http.Utils.Constants;
 import com.loveiparty.http.Utils.ImageLoaderUtils;
 import com.loveiparty.http.db.Party;
 import com.zongbutech.iparty.R;
@@ -80,14 +81,14 @@ public class HomePartyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             }
             ((ItemViewHolder) holder).homepart_item_money.setText(mParty.getPrice_man() / 100 + "");
             ((ItemViewHolder) holder).homepart_item_name.setText(mParty.getTitle());
-            ((ItemViewHolder) holder).homepart_item_loveUserCount.setText(mParty.getFavorite_num()+"");
+            ((ItemViewHolder) holder).homepart_item_loveUserCount.setText(mParty.getFavorite_num() + "");
             ((ItemViewHolder) holder).homepart_item_time.setText(mParty.getStart_time() + "," + mParty.getEnd_time());
-            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_all, mParty.getPic_base_url() + mParty.getHead_photo());
+            ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_all, Constants.BaseImageUrl + mParty.getHead_photo());
             String url = "";
             if (mParty.getPublisher_avatar().startsWith("http")) {
                 url = mParty.getPublisher_avatar();
             } else {
-                url = mParty.getPic_base_url() + mParty.getPublisher_avatar();
+                url = Constants.BaseImageUrl + mParty.getPublisher_avatar();
             }
             ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).homepart_item_user, url);
 

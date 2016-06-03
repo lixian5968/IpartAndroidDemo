@@ -54,6 +54,10 @@ public interface IpartApi {
     @GET("api/v1/partylist/{page}/{roll}")
     Observable<JsonObject> getParts(@Path("page") int page, @Path("roll") int roll, @Query("types") int types, @Query("joined_users") int joined_users);
 
+    //获取part的列表by Talente
+    @GET("api/v1/users/{TalentId}/partylist/{page}/{roll}")
+    Observable<JsonObject> getPartsByTalentId(@Path("TalentId") int TalentId, @Path("page") int page, @Path("roll") int roll);
+
 
     //获取Talent的列表
     @GET("api/v1/users/talents/{page}/{roll}")
@@ -96,9 +100,21 @@ public interface IpartApi {
 
     //发送message
     @POST("api/v1/messages/{PartyId}")
-    Observable<JsonObject> postMessage(@Path("PartyId") int PartyId,@Body JsonObject mJsonObject);
+    Observable<JsonObject> postMessage(@Path("PartyId") int PartyId, @Body JsonObject mJsonObject);
 
+    //的到达人信息
     @GET("api/v1/users/{UserId}")
     Observable<JsonObject> getUserByTalent(@Path("UserId") int UserId);
 
+    //的到join party的信息
+    @GET("api/v1/orders/party/{PartyId}")
+    Observable<JsonObject> getJoinParty(@Path("PartyId") int PartyId,@Query("start_timestamp") Long start_timestamp, @Query("end_timestamp") Long end_timestamp);
+
+    //参加party
+    @POST("api/v1/orders")
+    Observable<JsonObject> JoinParty( @Body JsonObject mJsonObject);
+
+    //删除参加party
+    @DELETE("api/v1/orders/{OrderId}")
+    Observable<JsonObject> DeleteParty(@Path("OrderId") String OrderId);
 }

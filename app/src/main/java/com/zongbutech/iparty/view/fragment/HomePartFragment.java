@@ -18,6 +18,7 @@ import com.zongbutech.iparty.R;
 import com.zongbutech.iparty.presenter.HomePartPresenter;
 import com.zongbutech.iparty.view.IView.IHomePartView;
 import com.zongbutech.iparty.view.activity.Party.PartyItemActivity;
+import com.zongbutech.iparty.view.activity.Party.UserPushParty;
 import com.zongbutech.iparty.view.adapter.HomePartyAdapter;
 
 import java.util.ArrayList;
@@ -46,8 +47,10 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
     private HomePartPresenter mHomePartPresenter;
     //选择的项目
     private int type;
+    int TalentId;
     //加载的页面
     private int pageIndex = 0;
+    String from;
 
     @Override
     public View getResourcesView(LayoutInflater inflater, ViewGroup container) {
@@ -55,6 +58,9 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
         ButterKnife.bind(this, view);
         mHomePartPresenter = new HomePartPresenter(ct, this);
         type = getArguments().getInt("select");
+        from = getArguments().getString("from");
+        TalentId = getArguments().getInt("TalentId");
+
 
         mSwipeRefreshWidget.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
         mSwipeRefreshWidget.setOnRefreshListener(this);
@@ -114,7 +120,7 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
                     && mAdapter.isShowFooter()) {
                 //加载更多
                 pageIndex += Constants.PAZE_SIZE;
-                mHomePartPresenter.loadParts(type, pageIndex);
+                loadParty();
             }
         }
     };
@@ -124,10 +130,18 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
     @Override
     public void onRefresh() {
         pageIndex = 0;
-//        if (pageIndex == 0 && mData!=null) {
-//            mData.clear();
-//        }
-        mHomePartPresenter.loadParts(type, pageIndex);
+        loadParty();
+    }
+
+    private void loadParty() {
+
+        if (HomeFragment.class.getSimpleName().equals(from)) {
+            mHomePartPresenter.loadParts(type, pageIndex);
+        } else if (UserPushParty.class.getSimpleName().equals(from)) {
+            mHomePartPresenter.loadPartsByTalentId(pageIndex, TalentId);
+        }
+
+
     }
 
     //显示刷新标志
@@ -144,7 +158,7 @@ public class HomePartFragment extends BaseFragment implements SwipeRefreshLayout
         if (mData == null) {
             mData = new ArrayList<Party>();
         }
-        if (pageIndex == 0 && mData!=null) {
+        if (pageIndex == 0 && mData != null) {
             mData.clear();
         }
         //如果没有更多数据了,则隐藏footer布局

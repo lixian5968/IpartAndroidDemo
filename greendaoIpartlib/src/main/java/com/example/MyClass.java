@@ -113,13 +113,19 @@ public class MyClass {
         Entity Order = schema.addEntity("Order");
         Order.setSuperclass("com.loveiparty.http.Bean.BaseHttpBean");
         Order.addIdProperty();
-        Order.addStringProperty("objectId");
-        Order.addStringProperty("user_id");
+        Order.addStringProperty("order_id");
+        Order.addDateProperty("order_time");
         Order.addStringProperty("party_id");
+        Order.addDateProperty("party_time");
         Order.addIntProperty("status");
+        Order.addStringProperty("user_avatar");
+        Order.addIntProperty("user_id");
+        Order.addStringProperty("user_nickname");
+        Order.addIntProperty("user_sex");
+
+        Order.addStringProperty("objectId");
         Order.addIntProperty("refund_state");
         Order.addDateProperty("created_time");
-        Order.addStringProperty("party_time");
         Order.addStringProperty("phone");
         Order.addIntProperty("sex");
         Order.addIntProperty("isshare");

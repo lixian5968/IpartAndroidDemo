@@ -54,8 +54,6 @@ public class PartyItemActivity extends BaseActivity {
     LxRoundImageView UserIcon;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,13 +64,13 @@ public class PartyItemActivity extends BaseActivity {
         party_name.setText(mParty.getTitle());
         List<String> userPhotoUrls = new ArrayList<>();
         for (PhotoBean bean : mParty.photos) {
-            String url = "http://dev-weixin.loveiparty.com" + bean.url;
+            String url = Constants.BaseImageUrl + bean.url;
             userPhotoUrls.add(url);
         }
         mLxCycleView.setListImage(userPhotoUrls);
 
 
-        String UserIconUrl = "http://dev-weixin.loveiparty.com" + mParty.getPublisher_avatar();
+        String UserIconUrl = Constants.BaseImageUrl + mParty.getPublisher_avatar();
         ImageLoaderUtils.display(ct, UserIcon, UserIconUrl);
         UserName.setText(mParty.getPublisher_name());
 
@@ -85,7 +83,6 @@ public class PartyItemActivity extends BaseActivity {
 
 
     int page = 1;
-
     private void getMessage() {
         mIpartApi.getMessageById(mParty.getParty_id(), page, Constants.PAZE_Roll)
                 .subscribeOn(Schedulers.io())
@@ -171,6 +168,13 @@ public class PartyItemActivity extends BaseActivity {
     @OnClick(R.id.talent_user)
     void talent_user(View v) {
         Intent it = new Intent(ct, TalentItemActivity.class);
+        it.putExtra("mParty", mParty);
+        startActivity(it);
+    }
+
+    @OnClick(R.id.join_party)
+    void join_party(View v) {
+        Intent it = new Intent(ct, JoinPartyActivity.class);
         it.putExtra("mParty", mParty);
         startActivity(it);
     }
