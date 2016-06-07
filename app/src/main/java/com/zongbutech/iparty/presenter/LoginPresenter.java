@@ -65,6 +65,9 @@ public class LoginPresenter extends BasePresenter {
                         if (code == 0) {
                             String result = mJsonObject.get("data").getAsJsonArray().get(0).toString();
                             User mUser = JsonUtils.deserialize(result, User.class);
+                            if(mUser.talent_photos!=null && mUser.talent_photos.size()>0){
+                                mUser.setTalent_bg_img(mUser.talent_photos.get(0).url);
+                            }
                             mLoginDbModel.saveUser(mUser);
                             SharePrefUtil.saveInt(ct, "userId", mUser.getUser_id());
                             return mIpartApi.IpartGetHongBao(HongBaoPage, HongBaoRoll, only_valid).subscribeOn(Schedulers.io());

@@ -108,13 +108,29 @@ public interface IpartApi {
 
     //的到join party的信息
     @GET("api/v1/orders/party/{PartyId}")
-    Observable<JsonObject> getJoinParty(@Path("PartyId") int PartyId,@Query("start_timestamp") Long start_timestamp, @Query("end_timestamp") Long end_timestamp);
+    Observable<JsonObject> getJoinParty(@Path("PartyId") int PartyId, @Query("start_timestamp") Long start_timestamp, @Query("end_timestamp") Long end_timestamp);
 
     //参加party
     @POST("api/v1/orders")
-    Observable<JsonObject> JoinParty( @Body JsonObject mJsonObject);
+    Observable<JsonObject> JoinParty(@Body JsonObject mJsonObject);
 
     //删除参加party
     @DELETE("api/v1/orders/{OrderId}")
     Observable<JsonObject> DeleteParty(@Path("OrderId") String OrderId);
+
+    //得到达人 举办的的party
+    @GET("api/v1/orders/talent")
+    Observable<JsonObject> talentParty(@Query("types") int types, @Query("page") int page, @Query("roll") int roll);
+
+    //得到达人 参加的party的具体信息
+    @GET("api/v1/partylist/{PartyIds}")
+    Observable<JsonObject> getPartysByIds(@Path("PartyIds") String PartyId, @Query("out_dated") int out_dated);
+
+    //得到达人 参加的party的订单信息
+    @GET("api/v1/orders/party/{PartyIds}?start_timestamp=-1&end_timestamp=4102329600")
+    Observable<JsonObject> getPartysOrdersByIds(@Path("PartyIds") String PartyId);
+
+    //得到达人 参加的party的用户信息
+    @GET("api/v1/users/{UserIds}")
+    Observable<JsonObject> getUsersByIds(@Path("UserIds") String UserIds);
 }

@@ -84,30 +84,32 @@ public class JoinPartyActivity extends BaseActivity {
                     public void call(JsonObject jsonObject) {
                         int code = jsonObject.get("code").getAsInt();
                         if (code == 0) {
-                            JsonArray result = jsonObject.get("data").getAsJsonArray();
-                            List<Order> mBeans = new ArrayList<Order>();
-                            for (int i = 0; i < result.size(); i++) {
-                                Order mBean = JsonUtils.deserialize(result.get(i).toString(), Order.class);
-                                mBeans.add(mBean);
-                            }
-
-
-                            int count = Check(mBeans);
-                            if (count == -1) {
+                            if(jsonObject.get("data")==null){
                                 mTextView.setVisibility(View.INVISIBLE);
                                 join_party.setVisibility(View.VISIBLE);
                                 delete_party.setVisibility(View.INVISIBLE);
-                            } else {
-                                join_party.setVisibility(View.INVISIBLE);
-                                mTextView.setVisibility(View.VISIBLE);
-                                delete_party.setVisibility(View.VISIBLE);
-                                endDate = mBeans.get(count).getParty_time();
-                                Orderid = mBeans.get(count).getOrder_id();
-                                handler = new Handler();
-                                sendTime();
+                            }else{
+                                JsonArray result = jsonObject.get("data").getAsJsonArray();
+                                List<Order> mBeans = new ArrayList<Order>();
+                                for (int i = 0; i < result.size(); i++) {
+                                    Order mBean = JsonUtils.deserialize(result.get(i).toString(), Order.class);
+                                    mBeans.add(mBean);
+                                }
+                                int count = Check(mBeans);
+                                if (count == -1) {
+                                    mTextView.setVisibility(View.INVISIBLE);
+                                    join_party.setVisibility(View.VISIBLE);
+                                    delete_party.setVisibility(View.INVISIBLE);
+                                } else {
+                                    join_party.setVisibility(View.INVISIBLE);
+                                    mTextView.setVisibility(View.VISIBLE);
+                                    delete_party.setVisibility(View.VISIBLE);
+                                    endDate = mBeans.get(count).getParty_time();
+                                    Orderid = mBeans.get(count).getOrder_id();
+                                    handler = new Handler();
+                                    sendTime();
+                                }
                             }
-
-
                             Log.e("", "");
                         } else {
                             Log.e("", "");
@@ -153,7 +155,12 @@ public class JoinPartyActivity extends BaseActivity {
 
         JsonObject object = new JsonObject();
         object.addProperty("party_id", mParty.getParty_id());
-        object.addProperty("party_time", "2016-06-03");
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date StartDate = new Date();
+        String StartString = df.format(StartDate);
+
+        object.addProperty("party_time", StartString);
         mIpartApi.JoinParty(object)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

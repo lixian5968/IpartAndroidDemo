@@ -8,10 +8,14 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.loveiparty.http.db.User;
 import com.zongbutech.iparty.R;
-import com.zongbutech.iparty.view.fragment.HomeTalentFragment;
-import com.zongbutech.iparty.view.fragment.HomeFragment;
-import com.zongbutech.iparty.view.fragment.SettingFragment;
+import com.zongbutech.iparty.model.DbModel.UserDbModel;
+import com.zongbutech.iparty.utils.db.SharePrefUtil;
+import com.zongbutech.iparty.view.fragment.HomeActivity.HomeFragment;
+import com.zongbutech.iparty.view.fragment.HomeActivity.HomeSettingFragment;
+import com.zongbutech.iparty.view.fragment.HomeActivity.HomeTalentItemFragment;
+import com.zongbutech.iparty.view.fragment.HomeActivity.HomeTalentListFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -44,13 +48,16 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     TextView[] mTextViews;
 
     HomeFragment mHomeFragment = null;
-    HomeTalentFragment mDarenFragment = null;
-    SettingFragment mMeFragment = null;
+    HomeTalentListFragment mTalentListFragment = null;
+    HomeTalentItemFragment mTalentItemFragment = null;
+    HomeSettingFragment mMeFragment = null;
 
     //当前界面的Fragment
     Fragment mContent = null;
 
     public static HomeActivity instance = null;
+    int user_type =0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +65,22 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
-        instance =this;
+        instance = this;
 
+
+        UserDbModel dbModel = new UserDbModel(ct);
+        int userId = SharePrefUtil.getInt(ct, "userId", -1);
+        User mUser = dbModel.getUserById(userId);
+        if(mUser!=null){
+            user_type = mUser.getUser_type();
+        }
 
 
         if (savedInstanceState == null) {
             mHomeFragment = HomeFragment.newInstance();
-            mDarenFragment = HomeTalentFragment.newInstance();
-            mMeFragment = SettingFragment.newInstance();
+            mTalentListFragment = HomeTalentListFragment.newInstance();
+            mTalentItemFragment = HomeTalentItemFragment.newInstance();
+            mMeFragment = HomeSettingFragment.newInstance();
             mContent = mHomeFragment;
             getSupportFragmentManager().beginTransaction().replace(R.id.home_fragment, mHomeFragment).commit();
         }
@@ -93,7 +108,13 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.main_daren_bt_all:
                 SetColorAndImage(1);
-                switchContent(mDarenFragment);
+
+                if (user_type == 0) {
+                    switchContent(mTalentListFragment);
+                } else if (user_type == 1) {
+                    switchContent(mTalentItemFragment);
+                }
+
 
                 break;
 

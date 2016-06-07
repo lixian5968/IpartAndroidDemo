@@ -4,11 +4,18 @@ package com.loveiparty.http.db;
 /**
  * Entity mapped to table "TALENT".
  */
-public class Talent {
+public class Talent extends com.loveiparty.http.Bean.BaseTalentBean  {
 
     private Long id;
+    private String introduction;
+    private String talent_avatar;
+    private String talent_details;
+    private String talent_name;
+    private String talent_phone;
+    private Double talent_stars;
+    private Integer talent_types;
+    private Integer user_id;
     private String objectId;
-    private String user_id;
     private String real_name;
     private String avatar;
     private Integer identify;
@@ -17,11 +24,10 @@ public class Talent {
     private String wechat_account;
     private String phone;
     private String photo_ids;
-    private String introduction;
     private String details;
     private Integer type_ids;
     private java.util.Date created_time;
-    private Boolean is_audited;
+    private Integer is_audited;
     private java.util.Date update_time;
 
     public Talent() {
@@ -31,10 +37,17 @@ public class Talent {
         this.id = id;
     }
 
-    public Talent(Long id, String objectId, String user_id, String real_name, String avatar, Integer identify, String city, String province, String wechat_account, String phone, String photo_ids, String introduction, String details, Integer type_ids, java.util.Date created_time, Boolean is_audited, java.util.Date update_time) {
+    public Talent(Long id, String introduction, String talent_avatar, String talent_details, String talent_name, String talent_phone, Double talent_stars, Integer talent_types, Integer user_id, String objectId, String real_name, String avatar, Integer identify, String city, String province, String wechat_account, String phone, String photo_ids, String details, Integer type_ids, java.util.Date created_time, Integer is_audited, java.util.Date update_time) {
         this.id = id;
-        this.objectId = objectId;
+        this.introduction = introduction;
+        this.talent_avatar = talent_avatar;
+        this.talent_details = talent_details;
+        this.talent_name = talent_name;
+        this.talent_phone = talent_phone;
+        this.talent_stars = talent_stars;
+        this.talent_types = talent_types;
         this.user_id = user_id;
+        this.objectId = objectId;
         this.real_name = real_name;
         this.avatar = avatar;
         this.identify = identify;
@@ -43,7 +56,6 @@ public class Talent {
         this.wechat_account = wechat_account;
         this.phone = phone;
         this.photo_ids = photo_ids;
-        this.introduction = introduction;
         this.details = details;
         this.type_ids = type_ids;
         this.created_time = created_time;
@@ -59,20 +71,76 @@ public class Talent {
         this.id = id;
     }
 
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getTalent_avatar() {
+        return talent_avatar;
+    }
+
+    public void setTalent_avatar(String talent_avatar) {
+        this.talent_avatar = talent_avatar;
+    }
+
+    public String getTalent_details() {
+        return talent_details;
+    }
+
+    public void setTalent_details(String talent_details) {
+        this.talent_details = talent_details;
+    }
+
+    public String getTalent_name() {
+        return talent_name;
+    }
+
+    public void setTalent_name(String talent_name) {
+        this.talent_name = talent_name;
+    }
+
+    public String getTalent_phone() {
+        return talent_phone;
+    }
+
+    public void setTalent_phone(String talent_phone) {
+        this.talent_phone = talent_phone;
+    }
+
+    public Double getTalent_stars() {
+        return talent_stars;
+    }
+
+    public void setTalent_stars(Double talent_stars) {
+        this.talent_stars = talent_stars;
+    }
+
+    public Integer getTalent_types() {
+        return talent_types;
+    }
+
+    public void setTalent_types(Integer talent_types) {
+        this.talent_types = talent_types;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
+    }
+
     public String getObjectId() {
         return objectId;
     }
 
     public void setObjectId(String objectId) {
         this.objectId = objectId;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
     }
 
     public String getReal_name() {
@@ -139,14 +207,6 @@ public class Talent {
         this.photo_ids = photo_ids;
     }
 
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
-    }
-
     public String getDetails() {
         return details;
     }
@@ -171,11 +231,11 @@ public class Talent {
         this.created_time = created_time;
     }
 
-    public Boolean getIs_audited() {
+    public Integer getIs_audited() {
         return is_audited;
     }
 
-    public void setIs_audited(Boolean is_audited) {
+    public void setIs_audited(Integer is_audited) {
         this.is_audited = is_audited;
     }
 

@@ -168,7 +168,8 @@ public class PartyItemActivity extends BaseActivity {
     @OnClick(R.id.talent_user)
     void talent_user(View v) {
         Intent it = new Intent(ct, TalentItemActivity.class);
-        it.putExtra("mParty", mParty);
+        it.putExtra("from", PartyItemActivity.class.getSimpleName());
+        it.putExtra("TalentId", mParty.getPublisher_id());
         startActivity(it);
     }
 

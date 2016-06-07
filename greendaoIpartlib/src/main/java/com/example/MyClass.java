@@ -203,8 +203,17 @@ public class MyClass {
 
         Entity Talent = schema.addEntity("Talent");
         Talent.addIdProperty();
+        Talent.setSuperclass("com.loveiparty.http.Bean.BaseTalentBean");
+        Talent.addStringProperty("introduction");
+        Talent.addStringProperty("talent_avatar");
+        Talent.addStringProperty("talent_details");
+        Talent.addStringProperty("talent_name");
+        Talent.addStringProperty("talent_phone");
+        Talent.addDoubleProperty("talent_stars");
+        Talent.addIntProperty("talent_types");
+        Talent.addIntProperty("user_id");
+
         Talent.addStringProperty("objectId");
-        Talent.addStringProperty("user_id");
         Talent.addStringProperty("real_name");
         Talent.addStringProperty("avatar");
         Talent.addIntProperty("identify");
@@ -213,15 +222,23 @@ public class MyClass {
         Talent.addStringProperty("wechat_account");
         Talent.addStringProperty("phone");
         Talent.addStringProperty("photo_ids");
-        Talent.addStringProperty("introduction");
         Talent.addStringProperty("details");
         Talent.addIntProperty("type_ids");
         Talent.addDateProperty("created_time");
-        Talent.addBooleanProperty("is_audited");
+        Talent.addIntProperty("is_audited");
         Talent.addDateProperty("update_time");
 
         Entity User = schema.addEntity("User");
-        User.setSuperclass("com.loveiparty.http.Bean.BaseHttpBean");
+        User.setSuperclass("com.loveiparty.http.Bean.BaseTalentBean");
+        User.addStringProperty("introduction");
+        User.addStringProperty("talent_avatar");
+        User.addStringProperty("talent_details");
+        User.addStringProperty("talent_name");
+        User.addStringProperty("talent_phone");
+        User.addStringProperty("talent_bg_img");
+        User.addDoubleProperty("talent_stars");
+        User.addIntProperty("talent_types");
+        User.addIntProperty("user_id");
         User.addIdProperty();
         User.addStringProperty("avatar");
         User.addIntProperty("has_change_sex");
@@ -231,7 +248,6 @@ public class MyClass {
         User.addDateProperty("register_time");
         User.addIntProperty("sex");
         User.addStringProperty("telephone");
-        User.addIntProperty("user_id");
         User.addIntProperty("user_type");
         User.addStringProperty("objectId");
         User.addStringProperty("province");

@@ -4,8 +4,17 @@ package com.loveiparty.http.db;
 /**
  * Entity mapped to table "USER".
  */
-public class User extends com.loveiparty.http.Bean.BaseHttpBean  {
+public class User extends com.loveiparty.http.Bean.BaseTalentBean  {
 
+    private String introduction;
+    private String talent_avatar;
+    private String talent_details;
+    private String talent_name;
+    private String talent_phone;
+    private String talent_bg_img;
+    private Double talent_stars;
+    private Integer talent_types;
+    private Integer user_id;
     private Long id;
     private String avatar;
     private Integer has_change_sex;
@@ -15,7 +24,6 @@ public class User extends com.loveiparty.http.Bean.BaseHttpBean  {
     private java.util.Date register_time;
     private Integer sex;
     private String telephone;
-    private Integer user_id;
     private Integer user_type;
     private String objectId;
     private String province;
@@ -32,7 +40,16 @@ public class User extends com.loveiparty.http.Bean.BaseHttpBean  {
         this.id = id;
     }
 
-    public User(Long id, String avatar, Integer has_change_sex, java.util.Date last_update_time, String nickname, String open_id, java.util.Date register_time, Integer sex, String telephone, Integer user_id, Integer user_type, String objectId, String province, String city, String country, String access_token, Integer platform_id, String thirdparty_account) {
+    public User(String introduction, String talent_avatar, String talent_details, String talent_name, String talent_phone, String talent_bg_img, Double talent_stars, Integer talent_types, Integer user_id, Long id, String avatar, Integer has_change_sex, java.util.Date last_update_time, String nickname, String open_id, java.util.Date register_time, Integer sex, String telephone, Integer user_type, String objectId, String province, String city, String country, String access_token, Integer platform_id, String thirdparty_account) {
+        this.introduction = introduction;
+        this.talent_avatar = talent_avatar;
+        this.talent_details = talent_details;
+        this.talent_name = talent_name;
+        this.talent_phone = talent_phone;
+        this.talent_bg_img = talent_bg_img;
+        this.talent_stars = talent_stars;
+        this.talent_types = talent_types;
+        this.user_id = user_id;
         this.id = id;
         this.avatar = avatar;
         this.has_change_sex = has_change_sex;
@@ -42,7 +59,6 @@ public class User extends com.loveiparty.http.Bean.BaseHttpBean  {
         this.register_time = register_time;
         this.sex = sex;
         this.telephone = telephone;
-        this.user_id = user_id;
         this.user_type = user_type;
         this.objectId = objectId;
         this.province = province;
@@ -51,6 +67,78 @@ public class User extends com.loveiparty.http.Bean.BaseHttpBean  {
         this.access_token = access_token;
         this.platform_id = platform_id;
         this.thirdparty_account = thirdparty_account;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public String getTalent_avatar() {
+        return talent_avatar;
+    }
+
+    public void setTalent_avatar(String talent_avatar) {
+        this.talent_avatar = talent_avatar;
+    }
+
+    public String getTalent_details() {
+        return talent_details;
+    }
+
+    public void setTalent_details(String talent_details) {
+        this.talent_details = talent_details;
+    }
+
+    public String getTalent_name() {
+        return talent_name;
+    }
+
+    public void setTalent_name(String talent_name) {
+        this.talent_name = talent_name;
+    }
+
+    public String getTalent_phone() {
+        return talent_phone;
+    }
+
+    public void setTalent_phone(String talent_phone) {
+        this.talent_phone = talent_phone;
+    }
+
+    public String getTalent_bg_img() {
+        return talent_bg_img;
+    }
+
+    public void setTalent_bg_img(String talent_bg_img) {
+        this.talent_bg_img = talent_bg_img;
+    }
+
+    public Double getTalent_stars() {
+        return talent_stars;
+    }
+
+    public void setTalent_stars(Double talent_stars) {
+        this.talent_stars = talent_stars;
+    }
+
+    public Integer getTalent_types() {
+        return talent_types;
+    }
+
+    public void setTalent_types(Integer talent_types) {
+        this.talent_types = talent_types;
+    }
+
+    public Integer getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public Long getId() {
@@ -123,14 +211,6 @@ public class User extends com.loveiparty.http.Bean.BaseHttpBean  {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
     }
 
     public Integer getUser_type() {

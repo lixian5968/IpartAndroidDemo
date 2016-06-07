@@ -85,7 +85,11 @@
         </activity>
         <activity
             android:name=".view.activity.Party.JoinPartyActivity"
-            android:label="@string/title_activity_join_party" >
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".view.activity.Talent.TalentSignInActivity"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

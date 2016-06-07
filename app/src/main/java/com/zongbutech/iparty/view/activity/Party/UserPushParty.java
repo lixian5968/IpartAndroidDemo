@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.zongbutech.iparty.R;
 import com.zongbutech.iparty.view.activity.BaseActivity;
-import com.zongbutech.iparty.view.fragment.HomePartFragment;
+import com.zongbutech.iparty.view.fragment.HomeActivity.HomePartFragment;
 
 public class UserPushParty extends BaseActivity {
     int TalentId;

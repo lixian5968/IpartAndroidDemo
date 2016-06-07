@@ -20,6 +20,7 @@
     <string name="title_activity_talent_item">TalentItemActivity</string>
     <string name="title_activity_user_push_party">UserPushParty</string>
     <string name="title_activity_join_party">JoinPartyActivity</string>
+    <string name="title_activity_talent_sign_in">TalentSignInActivity</string>
 
 
 </resources>

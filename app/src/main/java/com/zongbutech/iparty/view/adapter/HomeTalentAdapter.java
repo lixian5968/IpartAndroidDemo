@@ -76,11 +76,12 @@ public class HomeTalentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 return;
             }
             String url = "";
-            if (mBean.getAvatar() != null && mBean.getAvatar().length() > 0) {
-                if (mBean.getAvatar().startsWith("http")) {
-                    url = mBean.getAvatar();
+            if (mBean.talent_photos != null && mBean.talent_photos.size() > 0
+                    && mBean.talent_photos.get(0).url != null && mBean.talent_photos.get(0).url.length() > 0) {
+                if (mBean.talent_photos.get(0).url.startsWith("http")) {
+                    url = mBean.talent_photos.get(0).url;
                 } else {
-                    url = Constants.BaseImageUrl + mBean.getAvatar();
+                    url = Constants.BaseImageUrl + mBean.talent_photos.get(0).url;
                 }
                 ImageLoaderUtils.display(mContext, ((ItemViewHolder) holder).Item_All_Bg, url);
             }
